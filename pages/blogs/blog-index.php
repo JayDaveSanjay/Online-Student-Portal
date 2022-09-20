@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../navbar.css">
           <link rel="stylesheet" href="style/style.css">
+          <script src="https://kit.fontawesome.com/3d29a5ce63.js" crossorigin="anonymous"></script>
         
     </head>
     <body>
@@ -18,8 +19,11 @@
     <div class="main">
     <center><h2>Blogs</h2></center>
     <hr>  
+    <div class="sb" id="sb" >
+    <i class="fa-solid fa-magnifying-glass" style="height:40px;padding-left:840px;font-size:25px;"></i>
+    <input type="text" placeholder="Search.." style="height:35px;width:250px;float:right;"> 
+    </div>
     <div class="container">
-        
   <div class="card">
     <div class="card__header">
       <img src="https://source.unsplash.com/600x400/?computer" alt="card__image" class="card__image" width="600">

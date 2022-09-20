@@ -98,7 +98,7 @@
                       <a href="javascript:void(0)">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                      <a href="../login.php">Login</a>
+                      <a href="../login-register/login.php">Login</a>
                     </li>
                   </ul>
                 </div>
@@ -129,7 +129,7 @@
                 <h3 style="color:white;margin-top:0;padding-top:0;"> One solution to all your problems!</h3>
               </p>
               <a
-                href="../register.php"
+                href="../login-register/register.php"
                 class="main-btn border-btn btn-hover wow fadeInUp"
                 data-wow-delay=".6s"
                 >Register Yourself</a
