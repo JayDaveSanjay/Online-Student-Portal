@@ -1,3 +1,6 @@
+<?php
+include '../../php/login.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +31,7 @@
             <div class="signin-content">
                 <div class="signin-image">
                     <figure><img src="images/signin-image.jpg" alt="sing up image"></figure>
-                    <a href="register.php" class="signup-image-link">Create an account</a>
+                    <a href="forgot.php" class="signup-image-link">Forgot Password?</a>
                 </div>
 
                 <div class="signin-form">
@@ -36,11 +39,11 @@
                     <form method="POST" class="register-form" id="login-form">
                         <div class="form-group">
                             <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="your_name" id="your_name" placeholder="Your Name" style="border:none;border-bottom:1px solid black;padding-left:25px;"/>
+                            <input type="email" name="email" id="your_name" placeholder="Email" style="border:none;border-bottom:1px solid black;padding-left:25px;"/>
                         </div>
                         <div class="form-group">
                             <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="your_pass" id="your_pass" placeholder="Password" style="border:none;border-bottom:1px solid black;padding-left:25px;"/>
+                            <input type="password" name="pass" id="your_pass" placeholder="Password" style="border:none;border-bottom:1px solid black;padding-left:25px;"/>
                         </div>
                         <!-- <div class="form-group">
                             <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
@@ -48,7 +51,7 @@
                         </div> -->
                         <form action="index/index.php">
                         <div class="form-group form-button">
-                            <button type="submit" name="signin" id="signin" class="form-submit" style="border:none;"><a href="../index/index.php" style="text-decoration:none;color:white;">Log in</a></button>
+                            <button type="submit" name="signin" id="signin" class="form-submit" style="border:none;">Log in</button>
                         </div>
                         </form>
                     </form>

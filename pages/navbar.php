@@ -1,3 +1,8 @@
+<?php
+include '../php/connection.php';
+
+include '../php/login.php';
+?>
 <!DOCTYPE html>
 
 <html>
@@ -14,21 +19,55 @@
         <div class="sidenav">
             <div class="logo">
                 <center>
-                <img src="../logo-2.svg" alt="">
+                <img src="logo-2.svg" alt="">
                 </center>
             </div>
             <h5>Student Portal</h5>
             <hr>
-            <a href="#">About</a>
+            <div class="menu-item" style="display:flex;">
+            <i class="fa-brands fa-readme" style="color:white;font-size:20px;padding-top:10px;padding-left:5px;"></i>
+            <a href="blog-index.php" style="font-size:20px;">Read Blog</a>
+           
+            </div>
             <hr>
-            <a href="#">Services</a>
+            
+            <div class="menu-item" style="display:flex;">
+            <i class="fa-solid fa-pen" style="color:white;font-size:20px;padding-top:10px;padding-left:5px;"></i>
+            <a href="writeblog.php" style="font-size:20px;">Write Blog</a>
+            </div>
             <hr>
-            <a href="#">Clients</a>
+        
+            <div class="menu-item" style="display:flex;">
+            <i class="fa-solid fa-book" style="color:white;font-size:20px;padding-top:10px;padding-left:5px;"></i>
+            <a href="material-index.php" style="font-size:20px;">Material</a>
+            </div>
             <hr>
-            <a href="#">Contact</a>
+            <div class="menu-item" style="display:flex;">
+            <i class="fa-solid fa-question" style="color:white;font-size:20px;padding-top:10px;padding-left:5px;"></i>
+            <a href="askdoubt.php" style="font-size:20px;">Ask Doubt</a>
+            </div>
             <hr>
+            <div class="menu-item" style="display:flex;">
+            <i class="fa-solid fa-gauge-high" style="color:white;font-size:20px;padding-top:10px;padding-left:5px;"></i> 
+            <?php
+            $email=$_SESSION['loginstatus'];
+            $query = "SELECT * FROM users WHERE email = '$email'";
+            $result = mysqli_query($conn, $query);  
+            ?>
+            <a href="dashboard.php" style="font-size:20px;">Dashboard</a>
+            </div>
+            <hr>
+            <div class="menu-item" style="display:flex;">
+            <i class="fa-solid fa-user" style="color:white;font-size:20px;padding-top:10px;padding-left:5px;"></i> 
+           <form method="post">
+            <button name="log"
+                class=""
+                data-wow-delay=".6s"
+                style="border:none;color:white;background-color:#0d6efd;padding-left:5px;margin-left:5px;"
+                >Logout</button>
+</form>
+            </div>
         </div>
-
 <!-- Page content -->
      
         

@@ -1,4 +1,11 @@
+
 /* The sidebar menu */
+/* body {
+  font-family: "Quicksand", sans-serif;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+} */
 .sidenav {
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 180px; /* Set the width of the sidebar */
@@ -9,13 +16,13 @@
     background-color: #0d6efd; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
+    font-size: 18px;
   }
-  
   /* The navigation menu links */
   .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 18px;
     color: #fff;
     display: block;
   }
@@ -43,13 +50,11 @@
     margin-top: 0;
     padding-top: 0;
     color: white;
-    font-weight: 200;
     font-size: 25px;
     padding-bottom: 60px;
     padding-left: 3px;
   }
-  
-  
+
   /* Style page content */
   .main {
     margin-left: 160px; /* Same as the width of the sidebar */
@@ -57,7 +62,18 @@
   }
   
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
+  @media (max-width: 770px) {
+    .sidenav {
+    padding-top: 15px;
+    width:150px;
+  }
     .sidenav a {font-size: 18px;}
+  }
+  @media (max-width: 450px) {
+    .sidenav{
+      width:130px
+    }
+    .sidenav a{
+      font-size:8px;
+    }
   }

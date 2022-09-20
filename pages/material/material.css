@@ -1,0 +1,25 @@
+.container{
+    padding-left:100px;
+    padding-top: 50px;
+
+}
+.container select{
+    width:300px;
+}
+.question-paper{
+    padding-top:50px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+@media (max-width: 600px)
+{
+    .question-paper{
+        padding-left:50px;
+    }
+}
+@media (max-width: 520px)
+{
+    .question-paper{
+        padding-left:20px;
+    }
+}

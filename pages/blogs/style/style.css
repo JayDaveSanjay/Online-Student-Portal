@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
-
 *,
 *::before,
 *::after {
@@ -16,7 +14,6 @@ body {
 }
 .main h2{
     font-weight: 800;
-    font-size: 50px;
     padding-bottom: 50px;
 }
 .container {
@@ -110,3 +107,12 @@ background: linear-gradient(to bottom, #ef473a, #cb2d3e);
 .user__info > small {
   color: #666;
 }
+
+
+@media screen and (max-height:1307){
+   .main .search {
+    padding-left: 20px;
+    margin-left: 200px;
+  }
+}
+

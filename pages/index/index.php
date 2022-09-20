@@ -1,3 +1,6 @@
+<?php
+include '../../php/login.php';
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="">
   <head>
@@ -98,7 +101,21 @@
                       <a href="javascript:void(0)">Contact Us</a>
                     </li>
                     <li class="nav-item">
+                      <?php
+                      if(isset($_SESSION['loginstatus']))
+                      {
+                        $loginstatus=$_SESSION['loginstatus'];
+                        ?>
+                      <a style="color:black;"><?php echo $loginstatus;?></a>
+                    <?php  
+                    }
+                      else
+                      {
+                      ?>
                       <a href="../login-register/login.php">Login</a>
+                      <?php
+                      }
+                      ?>
                     </li>
                   </ul>
                 </div>
@@ -128,12 +145,31 @@
                 Here you can solve your doubts,get study material,write blogs!<br>
                 <h3 style="color:white;margin-top:0;padding-top:0;"> One solution to all your problems!</h3>
               </p>
-              <a
-                href="../login-register/register.php"
+              <form method="post">
+              <?php
+              if(isset($_SESSION['loginstatus']))
+              {
+                ?>
+                <button name="logout"
                 class="main-btn border-btn btn-hover wow fadeInUp"
                 data-wow-delay=".6s"
-                >Register Yourself</a
+                >Logout</button>
+                <?php
+              }
+              else
+              {
+                ?>
+              <a
+                href="../login-register/login.php"
+                class="main-btn border-btn btn-hover wow fadeInUp"
+                data-wow-delay=".6s"
+                >Log in and Get Started</a
               >
+              <?php
+            }
+          
+            ?>
+            </form>
               <a href="#features" class="scroll-bottom">
                 <i class="lni lni-arrow-down"></i
               ></a>
@@ -228,12 +264,30 @@
                   you can also read blogs of your interest here,Grab this opportunity!
                 </p>
               </div>
+              <?php
+              if(isset($_SESSION['loginstatus'])) 
+              {
+              ?>
               <a
-                href="../blogs/blog-index.php"
+                href="../blog-index.php"
                 class="main-btn btn-hover border-btn wow fadeInUp"
                 data-wow-delay=".6s"
                 >Discover More</a
               >
+              <?php
+              } 
+              else
+              {
+              ?>
+                 <a
+                href="../login-register/login.php"
+                class="main-btn btn-hover border-btn wow fadeInUp"
+                data-wow-delay=".6s"
+                >Discover More</a
+              >
+              <?php
+              }
+              ?>
             </div>
           </div>
         </div>
@@ -263,7 +317,7 @@
                 <li>24/7 Support</li>
               </ul>
               <a
-                href="javascript:void(0)"
+                href="../material-index.php"
                 class="main-btn btn-hover border-btn wow fadeInUp"
                 data-wow-delay=".6s"
                 >Get Material</a
@@ -349,7 +403,7 @@
             </div>
             <div class="btn" style="width:50%vw;">
             <a
-                href="javascript:void(0)"
+                href="../askdoubt.php"
                 class="main-btn btn-hover border-btn wow fadeInUp"
                 data-wow-delay=".6s"
                 >Start Asking</a>
@@ -407,8 +461,7 @@
                   </a>
                 </div>
                 <p class="desc mb-30 text-white">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  dinonumy eirmod tempor invidunt.
+                  One solution to all your problems,by BMIIT for BMIIT.
                 </p>
                 <ul class="socials">
                   <li>
@@ -461,12 +514,10 @@
 
             <div class="col-xl-3 col-lg-3 col-md-6">
               <div class="footer-widget">
-                <h3>Other Products</h3>
+                <h3>Other Official Webportals</h3>
                 <ul class="links">
-                  <li><a href="jvascript:void(0)">Accounting Software</a></li>
-                  <li><a href="jvascript:void(0)">Billing Software</a></li>
-                  <li><a href="jvascript:void(0)">Booking System</a></li>
-                  <li><a href="jvascript:void(0)">Tracking System</a></li>
+                  <li><a href="http://utu.ac.in/bmiit/#/">BMIIT Official Website</a></li>
+                  <li><a href="http://utu.ac.in/bmiit/CHRONICLES/#/">BMIIT Magazine</a></li>
                 </ul>
               </div>
             </div>
