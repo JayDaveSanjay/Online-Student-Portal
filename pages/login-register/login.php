@@ -1,5 +1,5 @@
 <?php
-include '../../php/login.php';
+include '../../php/login.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +36,13 @@ include '../../php/login.php';
 
                 <div class="signin-form">
                     <h2 class="form-title">Log in</h2>
+                    <?php
+                    if(isset($_SESSION['pwd']))
+                    {
+                        echo $_SESSION['pwd'];
+                        unset($_SESSION['pwd']);
+                    }
+                    ?>
                     <form method="POST" class="register-form" id="login-form">
                         <div class="form-group">
                             <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>

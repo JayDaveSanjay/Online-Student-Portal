@@ -1,8 +1,10 @@
 <?php
+include '../php/login.php';
 if(!isset($_SESSION['loginstatus']))
 {
   header('location:login-register/login.php');
 }
+?>
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,7 +42,8 @@ if(!isset($_SESSION['loginstatus']))
       <div class="e-navlist e-navlist--active-bg">
         <ul class="nav">
           <li class="nav-item"><a class="nav-link px-2 active" href="admin-dashboard-reports.php"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Reports</span></a></li>
-          <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-users.php" target=""><i class="fas fa-user mr-2"></i><span>Users</span></a></li>
+          <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-users.php" target=""><i class="fas fa-user mr-2"></i><span>Add/Block Users</span></a></li>
+          <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-users-info.php" target=""><i class="fas fa-user mr-2"></i><span>Manage Users</span></a></li>
           <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard.php" target=""><i class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
         </ul>
       </div>
@@ -161,7 +164,7 @@ if(!isset($_SESSION['loginstatus']))
         </div>
       </div>
 
-      <div class="col-12 col-md-3 mb-3">
+      <!-- <div class="col-12 col-md-3 mb-3">
         <div class="card mb-3">
           <div class="card-body">
             <div class="px-xl-3">
@@ -180,7 +183,7 @@ if(!isset($_SESSION['loginstatus']))
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </div>

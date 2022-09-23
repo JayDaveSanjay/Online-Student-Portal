@@ -1,6 +1,9 @@
 <?php
-session_start();
 include 'connection.php' ;
+if(!isset($_SESSION))
+{
+include 'session.php';
+}
 #user add on admin dashboard code with validation
 if(isset($_POST['add']))
 {
@@ -13,7 +16,7 @@ if(isset($_POST['add']))
       }
       else
       {
-            $name=test_input($_POST['name']);
+            $name=TEST($_POST['name']);
       }
       if(!preg_match("/^[2]\d{14}$/",$_POST['enno']))
       {
@@ -22,7 +25,7 @@ if(isset($_POST['add']))
       }
       else
       {
-        $enno=test_input($_POST['enno']);
+        $enno=TEST($_POST['enno']);
       }
       if(!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
       {
@@ -31,7 +34,7 @@ if(isset($_POST['add']))
       }
       else
       {
-        $email=test_input($_POST['email']);
+        $email=TEST($_POST['email']);
       }
       if(!preg_match("/^[6-9]\d{9}$/",$_POST['contact']))
       {
@@ -64,6 +67,10 @@ if(isset($_POST['add']))
       {
       $pwd=md5($pwd);
       }
+      if($type=="student" )
+      {
+      $pwd=md5($pwd);
+      }
     }
     if(!empty($name) && !empty($enno) && !empty($email) && !empty($contact) && !empty($pwd) && !empty($type))
     { 
@@ -92,16 +99,6 @@ if(isset($_POST['upload']))
 {
   if($_FILES['file']['name'])
   {
-    $useractivationcode=md5(rand());
-    $otp=rand(100000,999999);
-    $data = array(
-      ':user_name'  => $user_name,
-      ':user_email'  => $user_email,
-      ':user_password' => $user_password,
-      ':user_activation_code' => $user_activation_code,
-      ':user_email_status'=> 'not verified',
-      ':user_otp'   => $user_otp
-     );
    
     $filename=explode(".",$_FILES['file']['name']);
     if($filename[1]=='csv')
@@ -119,18 +116,25 @@ if(isset($_POST['upload']))
              $run=mysqli_query($conn,$sql);
              if($run)
             {
-              echo "hello kemcho maja hello 12345556 hshshshshsh";
+              $_SESSION['csv']="records of csv file has been uploaded";
+              header('location:../pages/admin-dashboard-users.php');
             }
             else
             {
-              echo "nathi thayu insert hahahahahahahahahahhahahahahaha";
+              $_SESSION['csv']="records of csv file were not uploaded!";
+              header('location:../pages/admin-dashboard-users.php');
             }
           }
         fclose($handle);
         }
     }
+    else
+    {
+      $_SESSION['csv']="Please choose a csv file";
+      header('location:../pages/admin-dashboard-users.php');
+    }
   }
-function test_input($data)
+function TEST($data)
 {
   $data=trim($data);
   $data=stripcslashes($data);

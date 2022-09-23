@@ -1,15 +1,20 @@
 <?php
+include '../php/login.php';
 if(!isset($_SESSION['loginstatus']))
 {
   header('location:login-register/login.php');
 }
+include '../php/connection.php';
+$loginstatus=$_SESSION['loginstatus'];
+$sql=mysqli_query($conn,"select * from users where email='$loginstatus'");
+$arr=mysqli_fetch_assoc($sql);
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Write Blog</title>
+        <title>User Dashboard</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="navbar.css">
@@ -63,8 +68,8 @@ if(!isset($_SESSION['loginstatus']))
                 </div>
                 <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                   <div class="text-center text-sm-left mb-2 mb-sm-0">
-                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">John Smith</h4>
-                    <p class="mb-0">@johnny.s</p>
+                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><?php echo $arr['name'];?></h4>
+                    <p class="mb-0"><?php echo $arr['email'];?></p>
                     <div class="text-muted"><small>Last seen 2 hours ago</small></div>
                     <div class="mt-2">
                       <button class="btn btn-primary" type="button">
@@ -74,7 +79,7 @@ if(!isset($_SESSION['loginstatus']))
                     </div>
                   </div>
                   <div class="text-center text-sm-right">
-                    <span class="badge badge-secondary">administrator</span>
+                    <span class="badge badge-secondary"><?php echo $arr['type'];?> </span>
                     <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
                   </div>
                 </div>
@@ -84,50 +89,39 @@ if(!isset($_SESSION['loginstatus']))
               </ul>
               <div class="tab-content pt-3">
                 <div class="tab-pane active">
-                  <form class="form" novalidate="">
+                  <form class="form" method="post" novalidate="">
                     <div class="row">
                       <div class="col">
                         <div class="row">
                           <div class="col">
                             <div class="form-group">
                               <label>Full Name</label>
-                              <input class="form-control" type="text" name="name" placeholder="John Smith" value="John Smith">
+                              <input class="form-control" type="text" name="name" placeholder="John Smith" value="<?php echo $arr['name'];?>">
                             </div>
                           </div>
                           <div class="col">
                             <div class="form-group">
                               <label>Username</label>
-                              <input class="form-control" type="text" name="username" placeholder="johnny.s" value="johnny.s">
+                              <input class="form-control" type="text" name="username" placeholder="johnny.s" value="<?php echo $arr['email'];?>" readonly>
                             </div>
                           </div>
-                        </div>
-                        <div class="row">
-                          <div class="col">
-                            <div class="form-group">
-                              <label>Email</label>
-                              <input class="form-control" type="text" placeholder="user@example.com">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col mb-3">
-                            <div class="form-group">
-                              <label>About</label>
-                              <textarea class="form-control" rows="5" placeholder="My Bio"></textarea>
-                            </div>
-                          </div>
+                          
                         </div>
                       </div>
                     </div>
+                    <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Contact number</label>
+                              <input class="form-control" type="number" value="<?php echo $arr['contact'];?>">
+                            </div>
+                          </div>
+                        </div>
                     <div class="row">
                       <div class="col-12 col-sm-6 mb-3">
                         <div class="mb-2"><b>Change Password</b></div>
                         <div class="row">
                           <div class="col">
-                            <div class="form-group">
-                              <label>Current Password</label>
-                              <input class="form-control" type="password" placeholder="••••••">
-                            </div>
                           </div>
                         </div>
                         <div class="row">
@@ -140,16 +134,12 @@ if(!isset($_SESSION['loginstatus']))
                         </div>
                         <div class="row">
                           <div class="col">
-                            <div class="form-group">
-                              <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                              <input class="form-control" type="password" placeholder="••••••"></div>
-                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col d-flex justify-content-end">
-                        <button class="btn btn-primary" type="submit">Save Changes</button>
+                      <div class="col mt-5">
+                        <button class="btn btn-primary" type="submit" name="change">Save Changes</button>
                       </div>
                     </div>
                   </form>
@@ -161,7 +151,7 @@ if(!isset($_SESSION['loginstatus']))
         </div>
       </div>
 
-      <div class="col-12 col-md-3 mb-3">
+      <!-- <div class="col-12 col-md-3 mb-3">
         <div class="card mb-3">
           <div class="card-body">
             <div class="px-xl-3">
@@ -180,7 +170,7 @@ if(!isset($_SESSION['loginstatus']))
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </div>

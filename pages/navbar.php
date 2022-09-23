@@ -1,8 +1,4 @@
-<?php
-include '../php/connection.php';
 
-include '../php/login.php';
-?>
 <!DOCTYPE html>
 
 <html>
@@ -49,11 +45,6 @@ include '../php/login.php';
             <hr>
             <div class="menu-item" style="display:flex;">
             <i class="fa-solid fa-gauge-high" style="color:white;font-size:20px;padding-top:10px;padding-left:5px;"></i> 
-            <?php
-            $email=$_SESSION['loginstatus'];
-            $query = "SELECT * FROM users WHERE email = '$email'";
-            $result = mysqli_query($conn, $query);  
-            ?>
             <a href="dashboard.php" style="font-size:20px;">Dashboard</a>
             </div>
             <hr>

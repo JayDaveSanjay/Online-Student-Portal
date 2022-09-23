@@ -1,8 +1,10 @@
 <?php
+include '../php/login.php';
 if(!isset($_SESSION['loginstatus']))
 {
   header('location:login-register/login.php');
 }
+?>
 ?>
 <?php
 include '../php/register.php';
@@ -71,7 +73,8 @@ include '../php/register.php';
       <div class="e-navlist e-navlist--active-bg">
         <ul class="nav">
           <li class="nav-item"><a class="nav-link px-2 active" href="admin-dashboard-reports.php"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Reports</span></a></li>
-          <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-users.php" target=""><i class="fas fa-user mr-2"></i><span>Users</span></a></li>
+          <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-users.php" target=""><i class="fas fa-user mr-2"></i><span>Add/Block Users</span></a></li>
+          <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-users-info.php" target=""><i class="fas fa-user mr-2"></i><span>Manage Users</span></a></li>
           <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard.php" target=""><i class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
         </ul>
       </div>
@@ -122,7 +125,6 @@ include '../php/register.php';
             ?>
             </div>
                     <div class="error-message">
-                      <span id="name-error">
                       <?php if(isset($_SESSION['nameError']))
                       {
                       ?>
@@ -137,14 +139,14 @@ include '../php/register.php';
             unset($_SESSION['nameError']);
             }
             ?>
-                      </span>
+
                     </div>
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name"  name="name" placeholder="Name" onkeyup="validateName()">
+                        <span id="name-error"></span>
                     </div> 
                     <div class="error-message">
-                      <span id="enno-error">
                       <?php if(isset($_SESSION['ennoError']))
                       {
                       ?>
@@ -164,9 +166,10 @@ include '../php/register.php';
                     <div class="form-group">
                         <label for="enno">Enrollment number</label>
                         <input type="number" class="form-control" id="enno" name="enno" aria-describedby="emailHelp" placeholder="Enrollment number" onkeyup="validateEnno()">
-                    </div>
+                        <span id="enno-error"></span>
+                      </div>
                     <div class="error-message">
-                        <span id="email-error">
+                        
                         <?php if(isset($_SESSION['emailError']))
                       {
                       ?>
@@ -186,9 +189,10 @@ include '../php/register.php';
                     <div class="form-group">
                         <label for="email">Email address</label>
                         <input type="email" class="form-control" name="email" id="email" placeholder="Enter email" onkeyup="validateEmail()">
-                    </div>
+                        <span id="email-error"></span>
+                      </div>
                     <div class="error-message">
-                      <span id="contact-error">
+                      <span id="contactError"></span>
                       <?php if(isset($_SESSION['contactError']))
                       {
                       ?>
@@ -208,7 +212,8 @@ include '../php/register.php';
                     <div class="form-group">
                         <label for="contact">Contact number</label>
                         <input type="number" class="form-control" id="contact" name="contact" a placeholder="Contact Number" onkeyup="validateNumber()">
-                    </div>
+                        <span id="numberError"></span>
+                      </div>
                     <div class="error-message">
                       <span id="password-error">
                       <?php if(isset($_SESSION['passwordError']))
@@ -241,8 +246,28 @@ include '../php/register.php';
                     </div>
                    
                     <button type="submit" class="btn btn-primary btn-add " id="btn-Add" name="add"  onclick="validateForm()" >Add</button>
-               
-              
+                     
+                    <div class="alert alert-primary mt-3" role="alert">
+                    Only students should be inserted by csv file
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="error-message">
+                      <?php if(isset($_SESSION['csv']))
+                      {
+                      ?>
+         
+                      <div class="alert alert-warning alert-dismissible fade show " role="alert" style="background-color:#B2E8FF;">
+                      <?php echo $_SESSION['csv'];?> 
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                     </div>
+                 <?php 
+                    unset($_SESSION['csv']); 
+                     }
+            ?>
               <div class="mb-3">
               <label for="formFile" class="form-label mt-3">Add csv file</label>
                <input class="form-control " type="file" name="file">   
@@ -276,7 +301,7 @@ include '../php/register.php';
     </div>
       </div>
 
-      <div class="col-12 col-md-3 mb-3">
+      <!-- <div class="col-12 col-md-3 mb-3">
         <div class="card mb-3">
           <div class="card-body">
             <div class="px-xl-3">
@@ -295,13 +320,13 @@ include '../php/register.php';
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </div>
 </div>
 </div>
-        <script src="" async defer></script>
+        <script src="validation.js" async defer></script>
     </body>
 </html>
 <!--<select class="form-select" aria-label="Default select example">

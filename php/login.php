@@ -4,6 +4,7 @@ session_start();
 #logincode
 if(isset($_POST['signin']))
 {
+   
     $email=test_input($_POST['email']);
     $pass=mysqli_real_escape_string($conn,$_POST['pass']);
     $pass=md5($pass);

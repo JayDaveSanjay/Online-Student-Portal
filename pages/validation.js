@@ -25,12 +25,12 @@ function validateNumber ()
     var number=document.getElementById('contact').value;
     if(number.length!==10)
     {
-        contactError.innerHTML='Number should be of 10 digits!';
+        numberError.innerHTML='Number should be of 10 digits!';
         return false
     }
     if(!number.match(/^[6-9]\d{9}$/))
     {
-        contactError.innerHTML='Please enter valid and full number!';
+        numberError.innerHTML='Please enter valid and full number!';
         return false;
     }
     numberError.innerHTML='<i class="fa-solid fa-check"></i>';
@@ -38,13 +38,13 @@ function validateNumber ()
 }
 function validateEnno ()
 {
-    var number=document.getElementById('enno').value;
-    if(number.length!==15)
+    var enno=document.getElementById('enno').value;
+    if(enno.length!==15)
     {
-        ennnoError.innerHTML='Number should be of 15 digits!';
-        return false
+        ennoError.innerHTML='Number should be of 15 digits!';
+        return false;
     }
-    if(!number.match(/^[2]\d{14}$/))
+    if(!number.match(/^2\d{14}$/))
     {
         ennoError.innerHTML='Please enter valid and full enrollment number!';
         return false;

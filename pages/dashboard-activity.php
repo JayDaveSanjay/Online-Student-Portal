@@ -1,4 +1,5 @@
 <?php
+include '../php/login.php';
 if(!isset($_SESSION['loginstatus']))
 {
   header('location:login-register/login.php');
@@ -128,7 +129,7 @@ if(!isset($_SESSION['loginstatus']))
         </div>
       </div>
 
-      <div class="col-12 col-md-3 mb-3">
+      <!-- <div class="col-12 col-md-3 mb-3">
         <div class="card mb-3">
           <div class="card-body">
             <div class="px-xl-3">
@@ -147,7 +148,7 @@ if(!isset($_SESSION['loginstatus']))
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </div>
