@@ -5,9 +5,12 @@ if(!isset($_SESSION['loginstatus']))
   header('location:login-register/login.php');
 }
 include '../php/connection.php';
+include 'dashboard-update.php';
 $loginstatus=$_SESSION['loginstatus'];
-$sql=mysqli_query($conn,"select * from users where email='$loginstatus'");
-$arr=mysqli_fetch_assoc($sql);
+$sql="select * from users where email='$loginstatus'";
+$result=mysqli_query($conn,$sql);
+while ($row = mysqli_fetch_assoc($result)) {
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,8 +71,8 @@ $arr=mysqli_fetch_assoc($sql);
                 </div>
                 <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                   <div class="text-center text-sm-left mb-2 mb-sm-0">
-                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><?php echo $arr['name'];?></h4>
-                    <p class="mb-0"><?php echo $arr['email'];?></p>
+                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><?php echo $row['name'];?></h4>
+                    <p class="mb-0"><?php echo $row['email'] ;?></p>
                     <div class="text-muted"><small>Last seen 2 hours ago</small></div>
                     <div class="mt-2">
                       <button class="btn btn-primary" type="button">
@@ -79,7 +82,7 @@ $arr=mysqli_fetch_assoc($sql);
                     </div>
                   </div>
                   <div class="text-center text-sm-right">
-                    <span class="badge badge-secondary"><?php echo $arr['type'];?> </span>
+                    <span class="badge badge-secondary"><?php echo $row['type'];?> </span>
                     <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
                   </div>
                 </div>
@@ -89,20 +92,34 @@ $arr=mysqli_fetch_assoc($sql);
               </ul>
               <div class="tab-content pt-3">
                 <div class="tab-pane active">
-                  <form class="form" method="post" novalidate="">
+                  <form class="form" method="post" >
                     <div class="row">
                       <div class="col">
+                      <?php
+                              if(isset($_SESSION['namecontactupdate']))
+                              {
+                                ?>
+                                <div class="alert alert-warning alert-dismissible fade show " role="alert" style="background-color:#B2E8FF;">
+                      <?php echo $_SESSION['namecontactupdate'];?> 
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                     </div>
+                     <?php
+                              }
+                              ?>
                         <div class="row">
                           <div class="col">
                             <div class="form-group">
+                              
                               <label>Full Name</label>
-                              <input class="form-control" type="text" name="name" placeholder="John Smith" value="<?php echo $arr['name'];?>">
+                              <input class="form-control" type="text" name="name" placeholder="John Smith" value="<?php echo $row['name'];?>">
                             </div>
                           </div>
                           <div class="col">
                             <div class="form-group">
                               <label>Username</label>
-                              <input class="form-control" type="text" name="username" placeholder="johnny.s" value="<?php echo $arr['email'];?>" readonly>
+                              <input class="form-control" type="text" name="username" placeholder="johnny.s" value="<?php echo $row['email'];?>" readonly>
                             </div>
                           </div>
                           
@@ -113,35 +130,55 @@ $arr=mysqli_fetch_assoc($sql);
                           <div class="col">
                             <div class="form-group">
                               <label>Contact number</label>
-                              <input class="form-control" type="number" value="<?php echo $arr['contact'];?>">
+                              <input class="form-control" type="number" name="contact" value="<?php echo $row['contact'];?>">
                             </div>
                           </div>
                         </div>
+                        <div class="row">
+                      <div class="col mt-2">
+                        <button class="btn btn-primary" type="submit" name="changenc">Save Changes</button>
+                      </div>
+                    </div>
                     <div class="row">
-                      <div class="col-12 col-sm-6 mb-3">
+                      <div class="col-12 col-sm-6 mb-3 mt-3">
                         <div class="mb-2"><b>Change Password</b></div>
                         <div class="row">
                           <div class="col">
                           </div>
                         </div>
+                        <?php
+                              if(isset($_SESSION['passwordupdate']))
+                              {
+                                ?>
+                                <div class="alert alert-warning alert-dismissible fade show " role="alert" style="background-color:#B2E8FF;">
+                      <?php echo $_SESSION['passwordupdate'];?> 
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                     </div>
+                     <?php
+                              }
+                              ?>
                         <div class="row">
                           <div class="col">
                             <div class="form-group">
+                            
                               <label>New Password</label>
-                              <input class="form-control" type="password" placeholder="••••••">
+                              <input class="form-control" type="password" name="pwd" placeholder="•••••" >
                             </div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col">
+                          <div class="row mt-1">
+                      <div class="col mt-3">
+                        <button class="btn btn-primary" type="submit" name="changep">Change Password</button>
+                      </div>
+                    </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col mt-5">
-                        <button class="btn btn-primary" type="submit" name="change">Save Changes</button>
-                      </div>
-                    </div>
+                    
                   </form>
 
                 </div>
@@ -178,3 +215,7 @@ $arr=mysqli_fetch_assoc($sql);
 </div>
     </body>
 </html>
+<?php
+}
+
+?>

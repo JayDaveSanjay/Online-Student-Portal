@@ -4,7 +4,13 @@ if(!isset($_SESSION['loginstatus']))
 {
   header('location:login-register/login.php');
 }
-?>
+include '../php/connection.php';
+$loginstatus=$_SESSION['loginstatus'];
+include 'admin-dashboard-update.php';
+$sql="select * from users where email='$loginstatus'";
+$result=mysqli_query($conn,$sql);
+while ($row = mysqli_fetch_assoc($result)) {
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,8 +72,8 @@ if(!isset($_SESSION['loginstatus']))
                 </div>
                 <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                   <div class="text-center text-sm-left mb-2 mb-sm-0">
-                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">John Smith</h4>
-                    <p class="mb-0">@johnny.s</p>
+                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><?php echo $row['name'];?></h4>
+                    <p class="mb-0"><?php echo $row['email'] ;?></p>
                     <div class="text-muted"><small>Last seen 2 hours ago</small></div>
                     <div class="mt-2">
                       <button class="btn btn-primary" type="button">
@@ -77,7 +83,7 @@ if(!isset($_SESSION['loginstatus']))
                     </div>
                   </div>
                   <div class="text-center text-sm-right">
-                    <span class="badge badge-secondary">administrator</span>
+                    <span class="badge badge-secondary"><?php echo $row['type'];?> </span>
                     <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
                   </div>
                 </div>
@@ -87,74 +93,94 @@ if(!isset($_SESSION['loginstatus']))
               </ul>
               <div class="tab-content pt-3">
                 <div class="tab-pane active">
-                  <form class="form" novalidate="">
+                  <form class="form" method="post" >
                     <div class="row">
                       <div class="col">
+                      <?php
+                              if(isset($_SESSION['namecontactupdateadmin']))
+                              {
+                                ?>
+                                <div class="alert alert-warning alert-dismissible fade show " role="alert" style="background-color:#B2E8FF;">
+                      <?php echo $_SESSION['namecontactupdateadmin'];?> 
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                     </div>
+                     <?php
+                     unset($_SESSION['namecontactupdateadmin']);
+                              }
+                              ?>
                         <div class="row">
                           <div class="col">
                             <div class="form-group">
+                              
                               <label>Full Name</label>
-                              <input class="form-control" type="text" name="name" placeholder="John Smith" value="John Smith">
+                              <input class="form-control" type="text" name="name" placeholder="John Smith" value="<?php echo $row['name'];?>">
                             </div>
                           </div>
                           <div class="col">
                             <div class="form-group">
                               <label>Username</label>
-                              <input class="form-control" type="text" name="username" placeholder="johnny.s" value="johnny.s">
+                              <input class="form-control" type="text" name="username" placeholder="johnny.s" value="<?php echo $row['email'];?>" readonly>
                             </div>
                           </div>
-                        </div>
-                        <div class="row">
-                          <div class="col">
-                            <div class="form-group">
-                              <label>Email</label>
-                              <input class="form-control" type="text" placeholder="user@example.com">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col mb-3">
-                            <div class="form-group">
-                              <label>About</label>
-                              <textarea class="form-control" rows="5" placeholder="My Bio"></textarea>
-                            </div>
-                          </div>
+                          
                         </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-12 col-sm-6 mb-3">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Contact number</label>
+                              <input class="form-control" type="number" name="contact" value="<?php echo $row['contact'];?>">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                      <div class="col mt-2">
+                        <button class="btn btn-primary" type="submit" name="changenc">Save Changes</button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12 col-sm-6 mb-3 mt-3">
                         <div class="mb-2"><b>Change Password</b></div>
                         <div class="row">
                           <div class="col">
-                            <div class="form-group">
-                              <label>Current Password</label>
-                              <input class="form-control" type="password" placeholder="••••••">
-                            </div>
                           </div>
                         </div>
+                        <?php
+                              if(isset($_SESSION['passwordupdateadmin']))
+                              {
+                                ?>
+                                <div class="alert alert-warning alert-dismissible fade show " role="alert" style="background-color:#B2E8FF;">
+                      <?php echo $_SESSION['passwordupdateadmin'];?> 
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                     </div>
+                     <?php
+                              }
+                              ?>
                         <div class="row">
                           <div class="col">
                             <div class="form-group">
+                            
                               <label>New Password</label>
-                              <input class="form-control" type="password" placeholder="••••••">
+                              <input class="form-control" type="password" name="pwd" placeholder="•••••" >
                             </div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col">
-                            <div class="form-group">
-                              <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                              <input class="form-control" type="password" placeholder="••••••"></div>
-                          </div>
+                          <div class="row mt-1">
+                      <div class="col mt-3">
+                        <button class="btn btn-primary" type="submit" name="changep">Change Password</button>
+                      </div>
+                    </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col d-flex justify-content-end">
-                        <button class="btn btn-primary" type="submit">Save Changes</button>
-                      </div>
-                    </div>
+                    
                   </form>
 
                 </div>
@@ -163,7 +189,6 @@ if(!isset($_SESSION['loginstatus']))
           </div>
         </div>
       </div>
-
       <!-- <div class="col-12 col-md-3 mb-3">
         <div class="card mb-3">
           <div class="card-body">
@@ -191,3 +216,6 @@ if(!isset($_SESSION['loginstatus']))
 </div>
     </body>
 </html>
+<?php
+}
+?>

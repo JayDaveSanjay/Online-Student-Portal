@@ -1,4 +1,12 @@
-
+<?php
+include '../php/connection.php';
+if(isset($_SESSION['loginstatus']))
+ {
+ $loginstatus=$_SESSION['loginstatus'];
+ }
+$sql=mysqli_query($conn,"select type from users where email='$loginstatus'");
+$arr=mysqli_fetch_assoc($sql);
+?>
 <!DOCTYPE html>
 
 <html>
@@ -35,7 +43,20 @@
         
             <div class="menu-item" style="display:flex;">
             <i class="fa-solid fa-book" style="color:white;font-size:20px;padding-top:10px;padding-left:5px;"></i>
-            <a href="material-index.php" style="font-size:20px;">Material</a>
+            <?php if($arr['type']=='faculty' || $arr['type']=='admin')
+            {
+            ?>
+            <a href="material-faculty.php" style="font-size:20px;">Material</a>
+            <?php
+            }
+            else
+            {
+          
+            ?>
+              <a href="material-index.php" style="font-size:20px;">Material</a>
+              <?php
+            }
+            ?>
             </div>
             <hr>
             <div class="menu-item" style="display:flex;">
@@ -45,7 +66,20 @@
             <hr>
             <div class="menu-item" style="display:flex;">
             <i class="fa-solid fa-gauge-high" style="color:white;font-size:20px;padding-top:10px;padding-left:5px;"></i> 
-            <a href="dashboard.php" style="font-size:20px;">Dashboard</a>
+            <?php if( $arr['type']=='admin')
+            {
+            
+            ?>
+            <a href="admin-dashboard.php" style="font-size:20px;">Dashboard</a>
+            <?php
+            }
+            else
+            {
+                ?>
+                <a href="dashboard.php" style="font-size:20px;">Dashboard</a>
+                <?php
+            }
+            ?>
             </div>
             <hr>
             <div class="menu-item" style="display:flex;">

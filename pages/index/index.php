@@ -1,6 +1,11 @@
 <?php
 include '../../php/login.php';
+include '../../php/connection.php';
+$loginstatus=$_SESSION['loginstatus'];
+$sql=mysqli_query($conn,"select type from users where email='$loginstatus'");
+$arr=mysqli_fetch_assoc($sql);
 ?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="">
   <head>
@@ -316,12 +321,30 @@ include '../../php/login.php';
                 <li>Easily to Manage</li>
                 <li>24/7 Support</li>
               </ul>
+              <?php if($arr['type']=='faculty' || $arr['type']=='admin')
+            {
+              ?>
               <a
+                href="../material-faculty.php"
+                class="main-btn btn-hover border-btn wow fadeInUp"
+                data-wow-delay=".6s"
+                >Get Material</a
+              >
+              <?php
+            }
+            else
+            {
+              ?>
+               <a
                 href="../material-index.php"
                 class="main-btn btn-hover border-btn wow fadeInUp"
                 data-wow-delay=".6s"
                 >Get Material</a
               >
+              <?php
+            }
+            ?>
+
             </div>
           </div>
           <div class="col-xl-6 col-lg-6 order-first order-lg-last">

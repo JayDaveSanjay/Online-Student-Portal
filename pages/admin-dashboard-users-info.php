@@ -78,6 +78,7 @@ if(!isset($_SESSION['loginstatus']))
                     <th scope="col">Contact Number</th>
                     <th scope="col">User Type</th>
                     <th scope="col">Delete User</th>
+                    <th scope="col">Edit User</th>
                 </tr>
             </thead>
             <tbody>
@@ -97,7 +98,8 @@ if(!isset($_SESSION['loginstatus']))
                         <td><?php echo $row['type']; ?></td>
 
                         <td class='delete' onclick="return confirm('Delete this User?');"> <a href="admin-users-delete.php?delete=<?php echo $row['id'];?>" >Delete</a></td>
-                    </tr>
+                        <td class='delete' onclick="return confirm('edit this User?');"> <a href="admin-dashboard-users-update.php?update=<?php echo $row['id'];?>" >Update</a></td>
+                      </tr>
                     <?php
                     }
                 ?>

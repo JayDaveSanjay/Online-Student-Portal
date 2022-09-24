@@ -1,4 +1,5 @@
 <?php
+include '../php/login.php';
 if(!isset($_SESSION['loginstatus']))
 {
   header('location:login-register/login.php');

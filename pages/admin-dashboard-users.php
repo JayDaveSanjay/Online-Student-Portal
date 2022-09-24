@@ -5,7 +5,6 @@ if(!isset($_SESSION['loginstatus']))
   header('location:login-register/login.php');
 }
 ?>
-?>
 <?php
 include '../php/register.php';
 ?>
