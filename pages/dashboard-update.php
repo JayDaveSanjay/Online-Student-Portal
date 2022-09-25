@@ -1,9 +1,12 @@
 <?php
 include '../php/connection.php';
 $loginstatus=$_SESSION['loginstatus'];
+$q="select * from users where email='$loginstatus'";
+$result=mysqli_query($conn,$q);
+$arr=mysqli_fetch_assoc($result);
 if(isset($_POST['changep']))
 {
-  if(!empty($_POST['name']) || !empty($_POST['contact']) )
+  if(!empty($_POST['pwd']))
   {
   
       if(!preg_match("/^\S*$/",$_POST['pwd']))
@@ -12,8 +15,9 @@ if(isset($_POST['changep']))
     }
     else
     {
-      $pwd=mysqli_real_escape_string($conn,$_POST['pwd']);
-      $pwd=md5($pwd);
+      
+        $pwd=mysqli_real_escape_string($conn,$_POST['pwd']);
+        $pwd=md5($pwd);
     }
     
     }
@@ -22,7 +26,7 @@ if(isset($_POST['changep']))
     $sql=mysqli_query($conn,"update users set password='$pwd' where email='$loginstatus'");
     if($sql)
     {
-        $_SESSION['passwordupdate']="password was updated successfull";
+        $_SESSION['passwordupdate']="password was updated successfully";
         header('location:dashboard.php');
         
     }
@@ -30,9 +34,12 @@ if(isset($_POST['changep']))
 }
 if(isset($_POST['changenc']))
 {
-    if (!preg_match("/^\S[a-zA-Z]+ [a-zA-Z]+$/",$_POST['name']))
+
+  if (!preg_match("/^\S[a-zA-Z]+ [a-zA-Z]+$/",$_POST['name']))
   {
-    echo '<script>alert("enter first and last name in the name field")</script>';
+    echo $_POST['name'];
+    header('location:hello.php');
+    // echo '<script>alert("enter first and last name in the name field")</script>';
   }
   else
       {
@@ -48,12 +55,13 @@ if(isset($_POST['changenc']))
         $contact=$_POST['contact'];
 
       }
-      if(!empty($name) && !empty($contact))
+    if(!empty($name) && !empty($contact))
     {
+    
     $sql=mysqli_query($conn,"update users set name='$name',contact=$contact where email='$loginstatus'");
     if($sql)
     {
-        $_SESSION['namecontactupdate']="name and contact were updated successfull";
+        $_SESSION['namecontactupdate']="name and contact were updated successfully";
         header('location:dashboard.php');
      
     }

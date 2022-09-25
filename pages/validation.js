@@ -39,7 +39,7 @@ function validateNumber ()
 function validateEnno ()
 {
     var enno=document.getElementById('enno').value;
-    if(enno.length!==15)
+    if(enno.length!=15)
     {
         ennoError.innerHTML='Number should be of 15 digits!';
         return false;
@@ -49,7 +49,7 @@ function validateEnno ()
         ennoError.innerHTML='Please enter valid and full enrollment number!';
         return false;
     }
-    numberError.innerHTML='<i class="fa-solid fa-check"></i>';
+    ennoError.innerHTML='<i class="fa-solid fa-check"></i>';
     return true;
 }
 function validateEmail()

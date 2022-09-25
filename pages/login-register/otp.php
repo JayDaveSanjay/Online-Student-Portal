@@ -93,5 +93,9 @@ if(isset($_POST['verify']))
             window.location.replace("pwd.php");
         </script>';
     }
+    else
+    {
+        echo '<script>alert("invalid otp!");</script>';
+    }
 }
 ?>

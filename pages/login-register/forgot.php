@@ -128,8 +128,8 @@ if(isset($_POST['reset']))
 
         // HTML body
         $mail->isHTML(true);
-        $mail->Subject="Your verify code";
-        $mail->Body="<p>Dear user, </p> <h3>Your verify OTP code is $otp <br></h3>
+        $mail->Subject="Your verification code";
+        $mail->Body="<p>Dear user, </p> <h3>Your verifcation OTP code is $otp <br></h3>
         <br><br>
         <p>With regrads,</p>
         <b>Student Portal of BMIIT</b>";

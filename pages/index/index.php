@@ -1,9 +1,12 @@
 <?php
 include '../../php/login.php';
-include '../../php/connection.php';
+include '../../php/connection.php';  
+if(isset($_SESSION['loginstatus']))
+{
 $loginstatus=$_SESSION['loginstatus'];
 $sql=mysqli_query($conn,"select type from users where email='$loginstatus'");
 $arr=mysqli_fetch_assoc($sql);
+}
 ?>
 
 <!DOCTYPE html>

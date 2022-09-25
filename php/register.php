@@ -69,11 +69,22 @@ if(isset($_POST['add']))
       }
       if($type=="student" )
       {
-      $pwd=md5($pwd);
+        $pwd=mysqli_real_escape_string($conn,$_POST['password']);
       }
     }
+
     if(!empty($name) && !empty($enno) && !empty($email) && !empty($contact) && !empty($pwd) && !empty($type))
     { 
+    $q="select * from users where email='$email'";
+    $result=mysqli_query($conn,$q);
+    $numrows=mysqli_num_rows($result); 
+    if($numrows!=0)
+    {
+      $_SESSION['register']="email already in use";
+      header('Location:../pages/admin-dashboard-users.php');
+    }
+    else
+    {
     $sql="insert into users(name,enno,email,contact,password,type) values('$name','$enno','$email','$contact','$pwd','$type')";
     $run=mysqli_query($conn,$sql);
     if ($run) {
@@ -84,6 +95,7 @@ if(isset($_POST['add']))
         echo "Error: " . $sql . "<br>" . $conn->error;
       }
     }
+  }
     mysqli_close($conn);
 }
 else
@@ -110,7 +122,7 @@ if(isset($_POST['upload']))
           $item2=mysqli_real_escape_string($conn,$data[1]);
           $item3=mysqli_real_escape_string($conn,$data[2]);
           $item4=mysqli_real_escape_string($conn,$data[3]);
-          $item5=mysqli_real_escape_string($conn,$data[4]);
+          $item5=mysqli_real_escape_string($conn,md5($data[4]));
           $item6=mysqli_real_escape_string($conn,$data[5]);
             $sql="insert into users(name,enno,email,contact,password,type) values ('$item1','$item2','$item3','$item4','$item5','$item6')";
              $run=mysqli_query($conn,$sql);

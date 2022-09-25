@@ -4,8 +4,11 @@ session_start();
 #logincode
 if(isset($_POST['signin']))
 {
-   
-    $email=test_input($_POST['email']);
+   $email=test_input($_POST['email']);
+   $q="select * from users where email='$email'";
+   $result=mysqli_query($conn,$q);
+   $arr=mysqli_fetch_assoc($result);
+    
     $pass=mysqli_real_escape_string($conn,$_POST['pass']);
     $pass=md5($pass);
     $query = "SELECT * FROM users WHERE email = '$email' AND password = '$pass'";  
