@@ -69,7 +69,7 @@ if(!isset($_SESSION['loginstatus']))
     </tr>
   </thead>
   <?php
-    $sql="select * from tbl_material where semester=1 and type='questionpaper'";
+    $sql="select * from tbl_material where semester=4 and type='questionpaper'";
     if ($result=mysqli_query($conn,$sql)) 
         {
             while ($row = mysqli_fetch_assoc($result)) 
@@ -109,7 +109,7 @@ if(!isset($_SESSION['loginstatus']))
     </tr>
   </thead>
   <?php
-    $sql="select * from tbl_material where semester=1 and type='material'";
+    $sql="select * from tbl_material where semester=4 and type='material'";
     if ($result=mysqli_query($conn,$sql)) 
         {
             while ($row = mysqli_fetch_assoc($result)) 

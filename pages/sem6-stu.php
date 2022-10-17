@@ -57,7 +57,7 @@ if(!isset($_SESSION['loginstatus']))
     <!-- table for question papers start-->
     <div id="contain">
 <div class="question-paper">
-    <center><h4 style="font-weight:800;font-size:30px;"> Question Paper</h2></center>
+    <center><h4 style="font-weight:800;font-size:30px;">Question Paper</h2></center>
     <form method="post" enctype="multipart/form-data">
     <table class="table">
   <thead>
@@ -69,7 +69,7 @@ if(!isset($_SESSION['loginstatus']))
     </tr>
   </thead>
   <?php
-    $sql="select * from tbl_material where semester=1 and type='questionpaper'";
+    $sql="select * from tbl_material where semester=6 and type='questionpaper'";
     if ($result=mysqli_query($conn,$sql)) 
         {
             while ($row = mysqli_fetch_assoc($result)) 
@@ -109,7 +109,7 @@ if(!isset($_SESSION['loginstatus']))
     </tr>
   </thead>
   <?php
-    $sql="select * from tbl_material where semester=1 and type='material'";
+    $sql="select * from tbl_material where semester=6 and type='material'";
     if ($result=mysqli_query($conn,$sql)) 
         {
             while ($row = mysqli_fetch_assoc($result)) 

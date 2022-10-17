@@ -22,21 +22,9 @@ if(!isset($_SESSION['loginstatus']))
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        
-<link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="logo-2.svg"
-    />
+
     </head>
     <body>
-    <?php
-         include 'navbar.php'
-    ?>
-    <div class="main">
-    <div class="container">
-        <center><h2 style="font-weight:800;font-size:50px;">Material</h2></center>
-    <hr>
     <!-- select semester-->
    <!-- <select class="form-select" aria-label="Default select example">
     <option selected>Select Semester</option>
@@ -60,108 +48,63 @@ if(!isset($_SESSION['loginstatus']))
 </form>
   </div>
 </div> -->
-  <h2>Semester</h2>
-<ul class="nav nav-tabs sem" id="semester">
-                <li class="nav-item"><a href="material-faculty.php" class="active nav-link">1</a></li>
-                <li class="nav-item ml-4"><a href="sem2.php" class="active nav-link">2</a></li>
-                <li class="nav-item ml-4"><a href="sem3.php" class="active nav-link">3</a></li>
-                <li class="nav-item ml-4"><a href="sem4.php" class="active nav-link">4</a></li>
-                <li class="nav-item ml-4"><a href="sem5.php" class="active nav-link">5</a></li>
-                <li class="nav-item ml-4"><a href="sem6.php" class="active nav-link">6</a></li>
-                <li class="nav-item ml-4"><a href="sem7.php" class="active nav-link">7</a></li>
-                <li class="nav-item ml-4"><a href="sem8.php" class="active nav-link">8</a></li>
-                <li class="nav-item ml-4"><a href="sem9.php" class="active nav-link">9</a></li>
-                <li class="nav-item ml-4"><a href="sem10.php" class="active nav-link">10</a></li>
-
-</ul>
 
     <!-- table for question papers start-->
-<div id="contain">
-<div class="question-paper">
-    <center><h4 style="font-weight:800;font-size:30px;">Question Paper</h2></center>
-    <form method="post" enctype="multipart/form-data">
+    <div class="question-paper">
+    <center><h4 style="font-weight:800;font-size:30px;">1 Question Paper</h2></center>
     <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Subject</th>
-      <th scope="col">Question Paper</th>
+      <th scope="col">Internal Question Paper</th>
+      <th scope="col">External Question Paper</th>
+      <th scope="col">Add</th>
+      <th scope="col">Update</th>
       <th scope="col">Delete</th>
 
     </tr>
   </thead>
-  <?php
-    $sql="select * from tbl_material where semester=1 and type='questionpaper'";
-    if ($result=mysqli_query($conn,$sql)) 
-        {
-            while ($row = mysqli_fetch_assoc($result)) 
-            {
-            
-    ?>
   <tbody>
-  
     <tr>
-      <th><?php echo $row['id']; ?></th>
-      <td><?php echo $row['subject'] ; ?></td>
-      <td><a href="../material/<?php echo $row["file"] ?>"><?php echo $row['file']?></a></td>
-      <td><a href="updatematerial.php?id=<?php echo $row['id'];?>" style="">Delete</a></td>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <input type="file" id="add" style="display:none"/> 
+      <td><button type="button" id="ADD" class="btn btn-primary">Add</button></td>
+      <input type="file" id="imgupload" style="display:none"/> 
+      <td><button type="button" class="btn btn-primary" id="imageupload">Update</button></td>
+      <td><button type="button" class="btn btn-primary">Delete</button></td>
 
     </tr>
   </tbody>
-
-<?php
-            }
-            $result->free();
-          }
-          else
-          {
-
-          }
-            ?>
-            </table>
-
-            
+</table>
 <center><h4 style="font-weight:800;font-size:30px;">Material</h2></center>
-<form method="post" enctype="multipart/form-data">
     <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Subject</th>
-      <th scope="col">Question Paper</th>
-
+      <th scope="col">PPT/PDF</th>
+      <th scope="col">Add</th>
+      <th scope="col">Update</th>
+      <th scope="col">Delete</th>
     </tr>
   </thead>
-  <?php
-    $sql="select * from tbl_material where semester=1 and type='material'";
-    if ($result=mysqli_query($conn,$sql)) 
-        {
-            while ($row = mysqli_fetch_assoc($result)) 
-            {
-            
-    ?>
   <tbody>
-  
     <tr>
-      <th><?php echo $row['id']; ?></th>
-      <td><?php echo $row['subject'] ; ?></td>
-      <td><a href="../material/<?php echo $row["file"] ?>"><?php echo $row['file']?></a></td>
-      
-
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <input type="file" id="add3" style="display:none"/> 
+      <td><button type="button" id="ADD3" class="btn btn-primary">Add</button></td>
+      <input type="file" id="imgupload3" style="display:none"/> 
+      <td><button type="button" class="btn btn-primary" id="imageupload3">Update</button></td>
+      <td><button type="button" class="btn btn-primary">Delete</button></td>
     </tr>
   </tbody>
-
-<?php
-            }
-            $result->free();
-          }
-          else
-          {
-
-          }
-            ?>
-            </table>
-            <form>
+</table>
     </div>
     </div>
         <script src="" async defer></script>
@@ -174,14 +117,6 @@ if(!isset($_SESSION['loginstatus']))
 
             
         </script>
-        <script type="application/javascript">
-    $('input[type="file"]').change(function(e){
-        var fileName = e.target.files[0].name;
-        $('.custom-file-label').html(fileName);
-    });
-</script>
-    </body>
-</html>
-</div>
+        
     </body>
 </html>

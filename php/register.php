@@ -69,7 +69,7 @@ if(isset($_POST['add']))
       }
       if($type=="student" )
       {
-        $pwd=mysqli_real_escape_string($conn,$_POST['password']);
+        $pwd=md5($pwd);
       }
     }
 
