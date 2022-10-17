@@ -64,8 +64,9 @@ while ($row = mysqli_fetch_assoc($result)) {
               <div class="row">
                 <div class="col-12 col-sm-auto mb-3">
                   <div class="mx-auto" style="width: 140px;">
-                    <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                      <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                    <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px;">
+                    <img src="profile_img/default_profile_pic.jpg" class="rounded" alt="...">
+                      <!-- <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span> -->
                     </div>
                   </div>
                 </div>
@@ -75,7 +76,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <p class="mb-0"><?php echo $row['email'] ;?></p>
                     <div class="text-muted"><small>Last seen 2 hours ago</small></div>
                     <div class="mt-2">
-                      <button class="btn btn-primary" type="button">
+                      <button class="btn btn-primary" type="file" name="upload_image" id="upload_image">
                         <i class="fa fa-fw fa-camera"></i>
                         <span>Change Photo</span>
                       </button>

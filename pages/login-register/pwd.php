@@ -80,18 +80,11 @@ if(isset($_POST['set']))
 {
     include '../../php/connection.php';
     $email=$_SESSION['mail'];
-    $password=$_POST['pwd'];
+    $password=mysqli_real_escape_string($conn,$_POST['pwd']);
     $q="select * from users where email='$email'";
 $result=mysqli_query($conn,$q);
 $arr=mysqli_fetch_assoc($result);
-    if($arr['type']=='student')
-    {
-        $pass=$password;
-    }
-    else
-    {
     $pass=md5($password);  
-    }  
     $sql=mysqli_query($conn,"update users set password='$pass' where email='$email'");
     if($sql)
     {
