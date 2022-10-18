@@ -4,6 +4,7 @@ if(!isset($_SESSION['loginstatus']))
 {
   header('location:login-register/login.php');
 }
+include '../php/blog.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,24 +39,28 @@ if(!isset($_SESSION['loginstatus']))
         <center><h2 style="font-weight:800;font-size:50px;">Write Blog</h2></center>
     <hr>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="title">Title</label>
     <input type="text" class="form-control" id="title"  name="title"  placeholder="Enter Title">
   </div>
+  <div class="form-group">
+    <label for="overview">Overview</label>
+    <input type="text" class="form-control"   name="overview"  placeholder="Enter overview">
+  </div>
   
-  <select class="form-select" aria-label="Default select example">
+  <select class="form-select" name="domain" aria-label="Default select example">
   <option selected>Select Domain</option>
-  <option value="1">Domain1</option>
-  <option value="2">Domain2</option>
-  <option value="3">Domain3</option>
+  <option value="domain1">Science</option>
+  <option value="domain2">Technology</option>
+  <option value="domain3">Coding</option>
 </select>
   <div class="form-group">
     <label for="body">Body</label>
-    <textarea class="form-control" id="editor1" name="body" ></textarea>
+    <textarea class="form-control" id="editor1" name="body" rows="40" cols="30"></textarea>
   </div>
 
-  <button type="submit" class="btn btn-primary">Post</button>
+  <button type="submit" name="post" class="btn btn-primary">Post</button>
 </form>
 </div>
 </div>

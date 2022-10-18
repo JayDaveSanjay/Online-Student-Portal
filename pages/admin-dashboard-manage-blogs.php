@@ -73,33 +73,32 @@ if(!isset($_SESSION['loginstatus']))
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Full Name</th>
-                    <th scope="col">Enrollment Number</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Contact Number</th>
-                    <th scope="col">User Type</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Domain</th>
+                    <th scope="col">Overview</th>
+                    <th scope="col">User Email</th>
+                   
                     <th scope="col">Delete User</th>
-                    <th scope="col">Edit User</th>
+                  
                 </tr>
             </thead>
             <tbody>
 
                     <?php
-                    $sql = "SELECT * FROM users";
+                    $sql = "SELECT * FROM tbl_blog";
                     $result = mysqli_query($conn, $sql);
                  
                     while ($row = mysqli_fetch_assoc($result)) {
                      
                     ?><tr>
                         <th scope='row'><?php echo $row['id']; ?></th>
-                        <td><?php echo $row['name']; ?></td>
-                        <td><?php echo $row['enno']; ?></td>
-                        <td><?php echo $row['email']; ?></td>
-                        <td><?php echo $row['contact']; ?></td>
-                        <td><?php echo $row['type']; ?></td>
+                        <td><?php echo $row['title']; ?></td>
+                        <td><?php echo $row['domain']; ?></td>
+                        <td><?php echo $row['overview']; ?></td>
+                        <td><?php echo $row['useremail']; ?></td>
 
-                        <td class='delete' onclick="return confirm('Delete this User?');"> <a href="admin-users-delete.php?delete=<?php echo $row['id'];?>" >Delete</a></td>
-                        <td class='delete' onclick="return confirm('edit this User?');"> <a href="admin-dashboard-users-update.php?update=<?php echo $row['id'];?>" >Update</a></td>
+                        <td class='delete' onclick="return confirm('Delete this Blog?');"> <a href="admin-blogs-delete.php?delete=<?php echo $row['id'];?>" >Delete</a></td>
+                       
                       </tr>
                     <?php
                     }

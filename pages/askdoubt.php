@@ -57,13 +57,23 @@ if(!isset($_SESSION['loginstatus']))
   <form>
   <div class="form-group">
     <label for="exampleInputEmail1">Enter Title</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Title">
+    <input type="text" class="form-control" name="title" placeholder="Enter Title">
+  </div>
+  <select class="form-select" name="domain" aria-label="Default select example">
+  <option selected>Select Domain</option>
+  <option value="domain1">PHP</option>
+  <option value="domain2">JAVA</option>
+  <option value="domain3">Other</option>
+</select>
+<div class="form-group">
+    <label for="overview">Overview</label>
+    <input type="text" class="form-control"   name="overview"  placeholder="Enter overview">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Body</label>
+    <label>Body</label>
     <textarea class="form-control" id="editor1" name="body" ></textarea>
   </div>
-  <button type="submit" class="btn btn-primary">Post</button>
+  <button type="submit" name="ask" class="btn btn-primary">Post</button>
 </form>   
 </div>
 </div>

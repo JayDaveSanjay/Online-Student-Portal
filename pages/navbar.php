@@ -30,14 +30,14 @@ $arr=mysqli_fetch_assoc($sql);
             <hr>
             <div class="menu-item" style="display:flex;">
             <i class="fa-brands fa-readme" style="color:white;font-size:20px;padding-top:10px;padding-left:5px;"></i>
-            <a href="blog-index.php" style="font-size:20px;">Read Blog</a>
+            <a href="blog-index.php" style="font-size:15px;">Read Blog</a>
            
             </div>
             <hr>
             
             <div class="menu-item" style="display:flex;">
             <i class="fa-solid fa-pen" style="color:white;font-size:20px;padding-top:10px;padding-left:5px;"></i>
-            <a href="writeblog.php" style="font-size:20px;">Write Blog</a>
+            <a href="writeblog.php" style="font-size:15px;">Write Blog</a>
             </div>
             <hr>
         
@@ -46,14 +46,14 @@ $arr=mysqli_fetch_assoc($sql);
             <?php if($arr['type']=='faculty' || $arr['type']=='admin')
             {
             ?>
-            <a href="material-faculty.php" style="font-size:20px;">Material</a>
+            <a href="material-faculty.php" style="font-size:15px;">Material</a>
             <?php
             }
             else
             {
           
             ?>
-              <a href="material-index.php" style="font-size:20px;">Material</a>
+              <a href="material-index.php" style="font-size:15px;">Material</a>
               <?php
             }
             ?>
@@ -61,29 +61,34 @@ $arr=mysqli_fetch_assoc($sql);
             <hr>
             <div class="menu-item" style="display:flex;">
             <i class="fa-solid fa-question" style="color:white;font-size:20px;padding-top:10px;padding-left:5px;"></i>
-            <a href="askdoubt.php" style="font-size:20px;">Ask Doubt</a>
+            <a href="askdoubt.php" style="font-size:15px;">Ask Doubt</a>
             </div>
             <hr>
             <div class="menu-item" style="display:flex;">
-            <i class="fa-solid fa-gauge-high" style="color:white;font-size:20px;padding-top:10px;padding-left:5px;"></i> 
+            <i class="fa-solid fa-question" style="color:white;font-size:15px;padding-top:10px;padding-left:5px;"></i>
+            <a href="solve.php" style="font-size:15px;">Solve Doubts</a>
+            </div>
+            <hr>
+            <div class="menu-item" style="display:flex;">
+            <i class="fa-solid fa-gauge-high" style="color:white;font-size:15px;padding-top:10px;padding-left:5px;"></i> 
             <?php if( $arr['type']=='admin')
             {
             
             ?>
-            <a href="admin-dashboard.php" style="font-size:20px;">Dashboard</a>
+            <a href="admin-dashboard.php" style="font-size:15px;">Dashboard</a>
             <?php
             }
             else
             {
                 ?>
-                <a href="dashboard.php" style="font-size:20px;">Dashboard</a>
+                <a href="dashboard.php" style="font-size:15px;">Dashboard</a>
                 <?php
             }
             ?>
             </div>
             <hr>
             <div class="menu-item" style="display:flex;">
-            <i class="fa-solid fa-user" style="color:white;font-size:20px;padding-top:10px;padding-left:5px;"></i> 
+            <i class="fa-solid fa-user" style="color:white;font-size:15px;padding-top:10px;padding-left:5px;"></i> 
            <form method="post">
             <button name="log"
                 class=""

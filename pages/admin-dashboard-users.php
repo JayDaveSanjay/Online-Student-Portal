@@ -74,6 +74,7 @@ include '../php/register.php';
           <li class="nav-item"><a class="nav-link px-2 active" href="admin-dashboard-reports.php"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Reports</span></a></li>
           <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-users.php" target=""><i class="fas fa-user mr-2"></i><span>Add/Block Users</span></a></li>
           <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-users-info.php" target=""><i class="fas fa-user mr-2"></i><span>Manage Users</span></a></li>
+          <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-manage-blogs.php" target=""><i class="fa-brands fa-readme mr-2"></i><span>Manage Blogs</span></a></li>
           <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard.php" target=""><i class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
         </ul>
       </div>

@@ -4,6 +4,11 @@ if(!isset($_SESSION['loginstatus']))
 {
   header('location:login-register/login.php');
 }
+include '../php/connection.php';
+if(isset($_GET['id']))
+{
+    $id=$_GET['id'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,10 +50,28 @@ body
         <?php
         include 'navbar.php'
     ?>
+      <?php
+        $query = "SELECT * FROM tbl_blog where id=$id";
+        if ($result =mysqli_query($conn,$query)) 
+        {
+          while ($row = mysqli_fetch_assoc($result)) 
+          {
+    ?>
     <div class="main">
-    <center><h2>Title</h2></center>
+    <center><h2><?php echo $row['title'];?></h2></center>
     <hr>  
     </div>
+  
+    <div class="container">
+            <?php
+            echo $row['body'];
+            ?>
+    </div>
+    <?php
+          }
+          $result->free();
+        }
+        ?>
         <script src="" async defer></script>
     </body>
 </html>

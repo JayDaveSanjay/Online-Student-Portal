@@ -4,6 +4,8 @@ if(!isset($_SESSION['loginstatus']))
 {
   header('location:login-register/login.php');
 }
+include '../php/connection.php';
+
 ?>
 <!DOCTYPE html>
 
@@ -40,90 +42,46 @@ if(!isset($_SESSION['loginstatus']))
     <input type="text" class="input-field" placeholder="Search.." style="height:35px;width:250px;"> 
     </div>
     <div class="container">
+    <?php
+        $query = "SELECT * FROM tbl_blog";
+        if ($result =mysqli_query($conn,$query)) 
+        {
+          while ($row = mysqli_fetch_assoc($result)) 
+          {
+    ?>
+    <form action="" method="post">
   <div class="card">
     <div class="card__header">
       <img src="https://source.unsplash.com/600x400/?computer" alt="card__image" class="card__image" width="600">
     </div>
     <div class="card__body">
-      <span class="tag tag-blue">Technology</span>
-      <h4>What's new in 2022 Tech</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
-      <button type="button" class="btn btn-primary" style="width:100px;border-radius:20px;"><a href="blogpage.php" style="color:white;">Read more</a></button>
+      <span class="tag tag-blue"><?php echo $row['domain'];?></span>
+      <h4><?php $row['title'];?></h4>
+      <p><?php echo $row['overview'];?></p>
+      <button type="button" class="btn btn-primary" style="width:100px;border-radius:20px;"><a href="blogpage.php?id=<?php echo $row['id'];?>" style="color:white;">Read more</a></button>
     </div>
     <div class="card__footer">
       <div class="user">
         <img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="user__image">
         <div class="user__info">
-          <h5>Jane Doe</h5>
-          <small>2h ago</small>
+          <h5><?php echo $row['useremail'];?></h5>
+          <small><?php echo $row['time'];?></small>
         </div>
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="card__header">
-      <img src="https://source.unsplash.com/600x400/?food" alt="card__image" class="card__image" width="600">
-    </div>
-    <div class="card__body">
-      <span class="tag tag-brown">Food</span>
-      <h4>Delicious Food</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
-   
-      <button type="button" class="btn btn-primary" style="width:100px;border-radius:20px;"><a href="blogpage.php" style="color:white;">Read more</a></button>
-    </div>
-    <div class="card__footer">
-      <div class="user">
-        <img src="https://i.pravatar.cc/40?img=2" alt="user__image" class="user__image">
-        <div class="user__info">
-          <h5>Jony Doe</h5>
-          <small>Yesterday</small>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card__header">
-      <img src="https://source.unsplash.com/600x400/?car,automobile" alt="card__image" class="card__image" width="600">
-    </div>
-    <div class="card__body">
-      <span class="tag tag-red">Automobile</span>
-      <h4>Race to your heart content</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
-      <button type="button" class="btn btn-primary" style="width:100px;border-radius:20px;"><a href="blogpage.php" style="color:white;">Read more</a></button>
-    </div>
-    <div class="card__footer">
-      <div class="user">
-        <img src="https://i.pravatar.cc/40?img=3" alt="user__image" class="user__image">
-        <div class="user__info">
-          <h5>John Doe</h5>
-          <small>2d ago</small>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card__header">
-      <img src="https://source.unsplash.com/600x400/?car,automobile" alt="card__image" class="card__image" width="600">
-    </div>
-    <div class="card__body">
-      <span class="tag tag-red">Automobile</span>
-      <h4>Race to your heart content</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
-      <button type="button" class="btn btn-primary" style="width:100px;border-radius:20px;"><a href="blogpage.php" style="color:white;">Read more</a></button>
-    </div>
-    <div class="card__footer">
-      <div class="user">
-        <img src="https://i.pravatar.cc/40?img=3" alt="user__image" class="user__image">
-        <div class="user__info">
-          <h5>John Doe</h5>
-          <small>2d ago</small>
-        </div>
-      </div>
-    </div>
-  </div>
- 
-</div>
+  </form>
+  <?php
+          }
+           $result->free();
+        }
+        else
 
+        {
+
+        }
+        ?>
+        
 <nav aria-label="Page navigation example" >
 <ul class="pagination">
     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
