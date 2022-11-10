@@ -16,18 +16,20 @@ if(isset($_POST['post']))
         {
             
             $useremail=$_SESSION['loginstatus'];
+            header('location:../index/index.php');
         }
 
        $body=$_POST['body'];
-        $sql="insert into tbl_doubt(title,domain,overview,body,useremail,time) values('$title','$domain','$overview','$body','$useremail',CURRENT_TIMESTAMP)";
+        $sql="insert into tbl_blog(title,domain,overview,body,useremail,time) values('$title','$domain','$overview','$body','$useremail',CURRENT_TIMESTAMP)";
         $result=mysqli_query($conn,$sql);
         if($result)
         {
-            echo "hello";
+            echo "<script>alert('blog posted');</script>";
+            header('location:../pages/writeblog.php');
         }
         else
         {
-            echo "mc";
+            echo "<script>alert('blog not posted');</script>";
         }
     }
 }

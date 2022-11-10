@@ -92,6 +92,7 @@ include 'updatematerial.php';
     $sql="select * from tbl_material where semester=3 and type='questionpaper'";
     if ($result=mysqli_query($conn,$sql)) 
         {
+          $cnt=1;
             while ($row = mysqli_fetch_assoc($result)) 
             {
             
@@ -99,16 +100,16 @@ include 'updatematerial.php';
   <tbody>
   
     <tr>
-      <th><?php echo $row['id']; ?></th>
+      <th><?php echo $cnt; ?></th>
       <td><?php echo $row['subject'] ; ?></td>
-      <td><a href="../material/<?php echo $row["file"] ?>"><?php echo $row['file']?></a></td>
-      <td><a href="updatematerial.php?id=<?php echo $row['id'];?>" style="">Delete</a></td>
+      <td><a href="../material/<?php echo $row["file"] ?>"><i class="fa-solid fa-book"></i></a></td>
+      <td onclick="return confirm('Delete this User?');"><a href="updatematerial.php?id=<?php echo $row['id'];?>" style=""><i class="fa-solid fa-trash"></i></a></td>
 
     </tr>
   </tbody>
 
 <?php
-            }
+           $cnt=$cnt+1;   }
             $result->free();
           }
           else
@@ -119,13 +120,13 @@ include 'updatematerial.php';
             </table>
             <form>
 <center><h4 style="font-weight:800;font-size:30px;">Material</h2></center>
-form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
     <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Subject</th>
-      <th scope="col">Question Paper</th>
+      <th scope="col">Unit pdf</th>
       <th scope="col">Delete</th>
 
     </tr>
@@ -134,6 +135,7 @@ form method="post" enctype="multipart/form-data">
     $sql="select * from tbl_material where semester=3 and type='material'";
     if ($result=mysqli_query($conn,$sql)) 
         {
+          $cnt=1;
             while ($row = mysqli_fetch_assoc($result)) 
             {
             
@@ -141,16 +143,16 @@ form method="post" enctype="multipart/form-data">
   <tbody>
   
     <tr>
-      <th><?php echo $row['id']; ?></th>
+      <th><?php echo $cnt; ?></th>
       <td><?php echo $row['subject'] ; ?></td>
-      <td><a href="../material/<?php echo $row["file"] ?>"><?php echo $row['file']?></a></td>
-      <td><a href="updatematerial.php?id=<?php echo $row['id'];?>" style="">Delete</a></td>
+      <td><a href="../material/<?php echo $row["file"] ?>"><i class="fa-solid fa-book"></i></a></td>
+      <td onclick="return confirm('Delete this User?');"><a href="updatematerial.php?id=<?php echo $row['id'];?>" style=""><i class="fa-solid fa-trash"></i></a></td>
 
     </tr>
   </tbody>
 
 <?php
-            }
+          $cnt=$cnt+1;    }
             $result->free();
           }
           else

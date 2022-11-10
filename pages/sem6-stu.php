@@ -81,7 +81,7 @@ if(!isset($_SESSION['loginstatus']))
     <tr>
       <th><?php echo $row['id']; ?></th>
       <td><?php echo $row['subject'] ; ?></td>
-      <td><a href="../material/<?php echo $row["file"] ?>"><?php echo $row['file']?></a></td>
+      <td><a href="../material/<?php echo $row["file"] ?>"><i class="fa-solid fa-book"></i></a></td>
 
     </tr>
   </tbody>
@@ -121,7 +121,7 @@ if(!isset($_SESSION['loginstatus']))
     <tr>
       <th><?php echo $row['id']; ?></th>
       <td><?php echo $row['subject'] ; ?></td>
-      <td><a href="../material/<?php echo $row["file"] ?>"><?php echo $row['file']?></a></td>
+      <td><a href="../material/<?php echo $row["file"] ?>"><i class="fa-solid fa-book"></i></a></td>
 
     </tr>
   </tbody>

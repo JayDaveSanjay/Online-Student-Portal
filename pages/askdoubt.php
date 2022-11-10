@@ -4,6 +4,11 @@ if(!isset($_SESSION['loginstatus']))
 {
   header('location:login-register/login.php');
 }
+include '../php/doubt.php';
+if(!isset($_SESSION))
+{
+session_start();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +37,7 @@ if(!isset($_SESSION['loginstatus']))
     </head>
     <body>
     <?php
-        include 'navbar.php'
+        include 'navbar.php';
     ?>
     <div class="main">
     <center><h2 style="font-weight:800;font-size:50px;">Start Asking</h2></center>
@@ -43,27 +48,28 @@ if(!isset($_SESSION['loginstatus']))
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Start Asking" style="padding-left:20px;">
     </div> -->
     <div class="askdoubt" style="padding-left:50px;">
-    <p>
-  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Ask Doubt
-  </a>
+
   <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     Button with data-target
   </button> -->
-</p>
 </div>
-<div class="collapse" id="collapseExample">
   <div class="card card-body">
-  <form>
+  <form method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="exampleInputEmail1">Enter Title</label>
     <input type="text" class="form-control" name="title" placeholder="Enter Title">
   </div>
   <select class="form-select" name="domain" aria-label="Default select example">
   <option selected>Select Domain</option>
-  <option value="domain1">PHP</option>
-  <option value="domain2">JAVA</option>
-  <option value="domain3">Other</option>
+  <option value="PHP">PHP</option>
+  <option value="JAVA">JAVA</option>
+  <option value="CSS">CSS</option>
+  <option value="JS">JS</option>
+  <option value="C">C</option>
+  <option value="C++">C++</option>
+  <option value="Linux">Linux</option>
+  <option value="Other">Other</option>
+
 </select>
 <div class="form-group">
     <label for="overview">Overview</label>
@@ -73,9 +79,8 @@ if(!isset($_SESSION['loginstatus']))
     <label>Body</label>
     <textarea class="form-control" id="editor1" name="body" ></textarea>
   </div>
-  <button type="submit" name="ask" class="btn btn-primary">Post</button>
+  <button type="submit" name="ask" class="btn btn-primary" onclick="return confirm('Post this question?');">Post</button>
 </form>   
-</div>
 </div>
       
     </div>

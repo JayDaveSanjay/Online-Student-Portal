@@ -51,9 +51,9 @@ include '../php/blog.php';
   
   <select class="form-select" name="domain" aria-label="Default select example">
   <option selected>Select Domain</option>
-  <option value="domain1">Science</option>
-  <option value="domain2">Technology</option>
-  <option value="domain3">Coding</option>
+  <option value="Science">Science</option>
+  <option value="Technology">Technology</option>
+  <option value="Coding">Coding</option>
 </select>
   <div class="form-group">
     <label for="body">Body</label>

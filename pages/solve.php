@@ -5,6 +5,7 @@ if(!isset($_SESSION['loginstatus']))
   header('location:login-register/login.php');
 }
 include '../php/connection.php';
+
 ?>
 <!DOCTYPE html>
 
@@ -12,7 +13,7 @@ include '../php/connection.php';
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Blog-index</title>
+        <title>Solve Doubts</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="navbar.css">
@@ -34,7 +35,7 @@ include '../php/connection.php';
         include 'navbar.php'
         ?>
     <div class="main">
-    <center><h2>Blogs</h2></center>
+    <center><h2>Solve Doubts</h2></center>
     <hr>  
     <div class="search" id="sb" >
     <i class="fa-solid fa-magnifying-glass icon" style="height:40px;font-size:25px;"></i>
@@ -42,40 +43,33 @@ include '../php/connection.php';
     </div>
     <div class="container">
     <?php
-        // $query = "SELECT * FROM tbl_blog";
-        // if ($result =mysqli_query($conn,$query)) 
-        // {
-        //   while ($row = mysqli_fetch_assoc($result)) 
-        //   {
-          // define how many results you want per page
-$results_per_page = 1;
+     $results_per_page = 1;
 
-// find out the number of results stored in database
-$sql='SELECT * FROM tbl_blog';
-$result = mysqli_query($conn, $sql);
-$number_of_results = mysqli_num_rows($result);
-
-// determine number of total pages available
-$number_of_pages = ceil($number_of_results/$results_per_page);
-
-// determine which page number visitor is currently on
-if (!isset($_GET['page'])) {
-  $page = 1;
-} else {
-  $page = $_GET['page'];
-}
-
-// determine the sql LIMIT starting number for the results on the displaying page
-$this_page_first_result = ($page-1)*$results_per_page;
-
-// retrieve selected results from database and display them on page
-$sql='SELECT * FROM tbl_blog LIMIT ' . $this_page_first_result . ',' .  $results_per_page;
-if($result = mysqli_query($conn, $sql))
-{
-while($row=mysqli_fetch_assoc($result))
-{
-    ?>
-   
+     // find out the number of results stored in database
+     $sql='SELECT * FROM doubts';
+     $result = mysqli_query($conn, $sql);
+     $number_of_results = mysqli_num_rows($result);
+     
+     // determine number of total pages available
+     $number_of_pages = ceil($number_of_results/$results_per_page);
+     
+     // determine which page number visitor is currently on
+     if (!isset($_GET['page'])) {
+       $page = 1;
+     } else {
+       $page = $_GET['page'];
+     }
+     
+     // determine the sql LIMIT starting number for the results on the displaying page
+     $this_page_first_result = ($page-1)*$results_per_page;
+     
+     // retrieve selected results from database and display them on page
+     $sql='SELECT * FROM doubts LIMIT ' . $this_page_first_result . ',' .  $results_per_page;
+     if($result = mysqli_query($conn, $sql))
+     {
+     while($row=mysqli_fetch_assoc($result))
+     {
+         ?>
     <form action="" method="post">
   <div class="card">
     <div class="card__header">
@@ -85,7 +79,7 @@ while($row=mysqli_fetch_assoc($result))
       <span class="tag tag-blue"><?php echo $row['domain'];?></span>
       <h4><?php $row['title'];?></h4>
       <p><?php echo $row['overview'];?></p>
-      <button type="button" class="btn btn-primary" style="width:100px;border-radius:20px;"><a href="blogpage.php?id=<?php echo $row['id'];?>" style="color:white;">Read more</a></button>
+      <button type="button" class="btn btn-primary" style="width:100px;border-radius:20px;"><a href="solvepage.php?id=<?php echo $row['id'];?>" style="color:white;">Read more</a></button>
     </div>
     <div class="card__footer">
       <div class="user">
@@ -107,17 +101,17 @@ while($row=mysqli_fetch_assoc($result))
         {
 
         }
-        
         ?>
-        </div>
+        
 
 
+</div>
 <nav aria-label="Page navigation example" >
 <ul class="pagination">
   <?php
   for ($page=1;$page<=$number_of_pages;$page++) {
   ?>
-    <li class="page-item"><?php echo '<a class="page-link" href="blog-index.php?page=' . $page . '">' . $page . '</a> ';?></li>
+    <li class="page-item"><?php echo '<a class="page-link" href="solve.php?page=' . $page . '">' . $page . '</a> ';?></li>
 
 <?php
   }  ?>

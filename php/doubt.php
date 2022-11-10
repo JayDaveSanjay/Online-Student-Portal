@@ -19,15 +19,15 @@ if(isset($_POST['ask']))
         }
 
        $body=$_POST['body'];
-        $sql="insert into tbl_blog(title,domain,overview,body,useremail,time) values('$title','$domain','$overview','$body','$useremail',CURRENT_TIMESTAMP)";
+        $sql="insert into doubts(title,domain,overview,body,useremail,time) values('$title','$domain','$overview','$body','$useremail',CURRENT_TIMESTAMP)";
         $result=mysqli_query($conn,$sql);
         if($result)
         {
-            echo "hello";
+            echo "<script>alert('Your question was posted');</script>";
         }
         else
         {
-            echo "mc";
+            echo "<script>alert('Your question was not posted');</script>";
         }
     }
 }

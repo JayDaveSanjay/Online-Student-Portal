@@ -4,6 +4,9 @@ if(!isset($_SESSION['loginstatus']))
 {
   header('location:login-register/login.php');
 }
+require '../php/material.php';
+include '../php/connection.php';
+include 'updatematerial.php';
 ?>
 
 <!DOCTYPE html>
@@ -76,6 +79,26 @@ if(!isset($_SESSION['loginstatus']))
 </ul>
 
     <!-- table for question papers start-->
+              <div class="container">
+<h4>Upload Question Paper</h4>
+  <div class="card card-body mt-5">
+<form method="post" enctype="multipart/form-data">
+<div class="form-group">
+    <label for="subject">Subject Name</label>
+    <input type="text"  name="subject" class="form-control" id="subject"  placeholder="Subject">
+</div>
+<div class="form-group">
+    <label for="sem">Semester</label>
+    <input type="number"  name="semester" class="form-control" id="semester"  placeholder="Semester">
+</div>
+<div class="custom-file">
+  <input type="file" class="custom-file-input" name="material" id="customFile">
+  <label class="custom-file-label" for="customFile">Choose file</label>
+</div>
+<button type="submit" name="upload" class="btn btn-primary mt-3">Upload</button>
+</form>
+</div>
+</div>
 <div id="contain">
 <div class="question-paper">
     <center><h4 style="font-weight:800;font-size:30px;">Question Paper</h2></center>
@@ -94,6 +117,7 @@ if(!isset($_SESSION['loginstatus']))
     $sql="select * from tbl_material where semester=1 and type='questionpaper'";
     if ($result=mysqli_query($conn,$sql)) 
         {
+          $cnt=1;
             while ($row = mysqli_fetch_assoc($result)) 
             {
             
@@ -101,16 +125,17 @@ if(!isset($_SESSION['loginstatus']))
   <tbody>
   
     <tr>
-      <th><?php echo $row['id']; ?></th>
+      <th><?php echo $cnt; ?></th>
       <td><?php echo $row['subject'] ; ?></td>
-      <td><a href="../material/<?php echo $row["file"] ?>"><?php echo $row['file']?></a></td>
-      <td><a href="updatematerial.php?id=<?php echo $row['id'];?>" style="">Delete</a></td>
+      <td><a href="../material/<?php echo $row["file"] ?>"><i class="fa-solid fa-book"></i></a></td>
+      <td onclick="return confirm('Delete this User?');"><a href="updatematerial.php?id=<?php echo $row['id'];?>" style=""><i class="fa-solid fa-trash"></i></a></td>
 
     </tr>
   </tbody>
 
 <?php
-            }
+           $cnt=$cnt+1;  
+           }
             $result->free();
           }
           else
@@ -119,8 +144,28 @@ if(!isset($_SESSION['loginstatus']))
           }
             ?>
             </table>
+        </form>
+  <div class="container">
+<h4>Upload Material</h4>
+  <div class="card card-body mt-5">
+<form method="post" enctype="multipart/form-data">
+<div class="form-group">
+    <label for="subject">Subject Name</label>
+    <input type="text"  name="subject1" class="form-control" id="subject"  placeholder="Subject">
+</div>
+<div class="form-group">
+    <label for="sem">Semester</label>
+    <input type="number"  name="semester1" class="form-control" id="semester"  placeholder="Semester">
+</div>
+<div class="custom-file">
+  <input type="file" class="custom-file-input" name="material1" id="customFile">
+  <label class="custom-file-label" for="customFile">Choose file</label>
+</div>
+<button type="submit" name="upload1" class="btn btn-primary mt-3">Upload</button>
+</form>
+</div>
 
-            
+  </div>
 <center><h4 style="font-weight:800;font-size:30px;">Material</h2></center>
 <form method="post" enctype="multipart/form-data">
     <table class="table">
@@ -128,14 +173,17 @@ if(!isset($_SESSION['loginstatus']))
     <tr>
       <th scope="col">#</th>
       <th scope="col">Subject</th>
-      <th scope="col">Question Paper</th>
+      <th scope="col">Unit pdf</th>
+      <th scope="col">Delete</th>
 
     </tr>
   </thead>
   <?php
     $sql="select * from tbl_material where semester=1 and type='material'";
+    
     if ($result=mysqli_query($conn,$sql)) 
         {
+          $cnt=1;
             while ($row = mysqli_fetch_assoc($result)) 
             {
             
@@ -143,16 +191,17 @@ if(!isset($_SESSION['loginstatus']))
   <tbody>
   
     <tr>
-      <th><?php echo $row['id']; ?></th>
+      <th><?php echo $cnt; ?></th>
       <td><?php echo $row['subject'] ; ?></td>
-      <td><a href="../material/<?php echo $row["file"] ?>"><?php echo $row['file']?></a></td>
-      
+      <td><a href="../material/<?php echo $row["file"] ?>"><i class="fa-solid fa-book"></i></a></td>
+      <td onclick="return confirm('Delete this User?');"><a href="updatematerial.php?id=<?php echo $row['id'];?>" style=""><i class="fa-solid fa-trash"></i></a></td>
 
     </tr>
   </tbody>
 
 <?php
-            }
+          $cnt=$cnt+1;  
+          }
             $result->free();
           }
           else
