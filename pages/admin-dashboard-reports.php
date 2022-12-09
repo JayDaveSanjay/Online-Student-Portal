@@ -85,7 +85,7 @@ margin-top:10px;
       <div class="e-navlist e-navlist--active-bg">
         <ul class="nav">
           <li class="nav-item"><a class="nav-link px-2 active" href="admin-dashboard-reports.php"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Reports</span></a></li>
-          <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-users.php" target=""><i class="fas fa-user mr-2"></i><span>Add/Block Users</span></a></li>
+          <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-users.php" target=""><i class="fas fa-user mr-2"></i><span>Add Users</span></a></li>
           <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-users-info.php" target=""><i class="fas fa-user mr-2"></i><span>Manage Users</span></a></li>
           <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-manage-blogs.php" target=""><i class="fa-brands fa-readme mr-2"></i><span>Manage Blogs</span></a></li>
           <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard.php" target=""><i class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
@@ -133,96 +133,57 @@ margin-top:10px;
                 <div class="tab-pane active">
                 <div class="container mt-5">
 
-         
-             
-        
-         
-<div  class="card">
-
-   <div class="row no-gutters">
-
-       <div class="col-md-4 border-right">
-
-           <div class="ratings text-center p-4 py-5">
-
-               <span class="badge bg-success">4.1 <i class="fa fa-star-o"></i></span>
-               <span class="d-block about-rating">VERY GOOD</span>
-               <span class="d-block total-ratings">183 ratings</span>
-               
-           </div>
-           
-       </div>
-
-       <div class="col-md-8">
-           
-           <div class="rating-progress-bars p-3">
-
-               <div class="progress-1 align-items-center">
-
-                   <div class="progress mt-3">
-                     <div class="progress-bar bg-success" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                       
-
-                           71%
-
-                       
-
-                   </div>
-                   </div>
-
-                   <div class="progress mt-3">
-                     <div class="progress-bar bg-custom" role="progressbar" style="width: 55%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">55%</div>
-                   </div>
-
-                   <div class="progress mt-3">
-                     <div class="progress-bar bg-primary" role="progressbar" style="width: 48%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">48%</div>
-
-                   </div>
-
-                   <div class="progress mt-3">
-                     <div class="progress-bar bg-warning" role="progressbar" style="width: 30%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">30%</div>
-                   </div>
-
-                   <div class="progress mt-3">
-                     <div class="progress-bar bg-danger" role="progressbar" style="width: 15%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">15%</div>
-                   </div>
-
-                  
+         <center><h4>Blocked Users</h4></center>
+         <hr>
+                <div class="col">
+    <div class="row">
+      <div class="col mb-3">
+        <div class="card">
+          <div class="card-body">
+          <table class="table " id="myTable">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Enrollment number</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">Type</th>
                    
-               </div>
-               
-           </div>
+            
+                  
+                </tr>
+            </thead>
+            <tbody>
 
-           
-       </div>
-       
-   </div>
-    
-</div>
+                    <?php
+                    $sql = "SELECT * FROM users where status=1";
+                    $result = mysqli_query($conn, $sql);
+                 
+                    while ($row = mysqli_fetch_assoc($result)) {
+                     
+                    ?><tr>
+                        <th scope='row'><?php echo $row['name']; ?></th>
+                        <td><?php echo $row['enno']; ?></td>
+                        <td><?php echo $row['email']; ?></td>
+                        <td><?php echo $row['contact']; ?></td>
+                        <td><?php echo $row['type']; ?></td>
 
-
-</div>
-<div class="graph">
-<center><h2 style="font-weight:800;">Blogs report</h2></center>
-<hr>
-<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-</div>
-
-<div class="bar">
-    <uhr>
-<center><h2 style="font-weight:800;">User report</h2></center>
-<hr>
-<div id="myPlot" style="width:100%;max-width:700px"></div>
-</div>
-
+                       
+                       
+                      </tr>
+                    <?php
+                    }
+                ?>
+                </tbody>
+        </table>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-<!-- 
-      <div class="col-12 col-md-3 mb-3">
+
+      <!-- <div class="col-12 col-md-3 mb-3">
         <div class="card mb-3">
           <div class="card-body">
             <div class="px-xl-3">
@@ -248,42 +209,10 @@ margin-top:10px;
 </div>
 </div>
 <script>
-var xValues = [50,60,70,80,90,100,110,120,130,140,150];
-var yValues = [7,8,8,9,9,9,10,11,14,14,15];
-
-new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{
-      fill: false,
-      lineTension: 0,
-      backgroundColor: "rgba(0,0,255,1.0)",
-      borderColor: "rgba(0,0,255,0.1)",
-      data: yValues
-    }]
-  },
-  options: {
-    legend: {display: false},
-    scales: {
-      yAxes: [{ticks: {min: 6, max:16}}],
-    }
-  }
-
-});
-//-----------------------------------
-var xArray = ["Students", "Faculty", "Admin"];
-var yArray = [55, 49, 44];
-
-var data = [{
-  x:xArray,
-  y:yArray,
-  type:"bar"
-}];
-
-var layout = {title:"Users"};
-
-Plotly.newPlot("myPlot", data, layout);
-</script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+    </script>
+    
     </body>
 </html>

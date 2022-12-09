@@ -24,7 +24,7 @@ if(isset($_GET['id']))
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-          
+<script src="//cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>         
         <link
       rel="shortcut icon"
       type="image/x-icon"
@@ -68,7 +68,7 @@ body
                          </div>
                          <div class="text-muted small ml-3">
                              <div>Posted on<strong><?php echo $row['time'];?></strong></div>
-                             <div><strong>134</strong> posts</div>
+                       
                          </div>
                      </div>
                  </div>
@@ -92,7 +92,12 @@ body
         }?>
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
-    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+    <form method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <textarea class="form-control" id="editor1" name="body" rows="40" cols="30"></textarea>
+    <button type="submit" name="post" class="btn btn-primary mt-4">Post</button>
+  </div>
+    </form>
   </div>
 </div>
 
@@ -116,13 +121,13 @@ body
                          </div>
                          <div class="text-muted small ml-3">
                              <div>Posted on<strong><?php echo $row['time'];?></strong></div>
-                             <div><strong>134</strong> posts</div>
+                         
                          </div>
                      </div>
                  </div>
                  <div class="card-body">
                      <p> 
-                        <?php echo $row['body'];?>
+                        <?php echo $row['answer'];?>
                     </p>
                      
                  </div>
@@ -132,3 +137,35 @@ body
          <?php
           }
         }?>
+        <script>
+                // Replace the <textarea id="editor1"> with a CKEditor 4
+                // instance, using default configuration.
+                // CKEDITOR.replace( 'editor1' );
+                var editor = CKEDITOR.replace( 'editor1' );
+                CKFinder.setupCKEditor( editor1 );
+            </script>
+            </body>
+    </html>
+    <?php
+    if(isset($_POST['post']))
+    {
+      if(isset($_SESSION['loginstatus']))
+      {
+          
+          $useremail=$_SESSION['loginstatus'];
+      }
+
+     $body=$_POST['body'];
+     $sql="INSERT INTO answers(doubt_id, answer, useremail, time) VALUES
+      ($id,'$body','$useremail',CURRENT_TIMESTAMP)";
+      $result=mysqli_query($conn,$sql);
+      if($result)
+      {
+        echo "<script>alert('Answer Posted');</script>";
+      }
+      else
+      {
+        echo "<script>alert('Answer not Posted');</script>";
+      }
+    }
+    ?>

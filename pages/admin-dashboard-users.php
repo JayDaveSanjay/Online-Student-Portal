@@ -72,7 +72,7 @@ include '../php/register.php';
       <div class="e-navlist e-navlist--active-bg">
         <ul class="nav">
           <li class="nav-item"><a class="nav-link px-2 active" href="admin-dashboard-reports.php"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Reports</span></a></li>
-          <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-users.php" target=""><i class="fas fa-user mr-2"></i><span>Add/Block Users</span></a></li>
+          <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-users.php" target=""><i class="fas fa-user mr-2"></i><span>Add Users</span></a></li>
           <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-users-info.php" target=""><i class="fas fa-user mr-2"></i><span>Manage Users</span></a></li>
           <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard-manage-blogs.php" target=""><i class="fa-brands fa-readme mr-2"></i><span>Manage Blogs</span></a></li>
           <li class="nav-item"><a class="nav-link px-2" href="admin-dashboard.php" target=""><i class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
@@ -275,32 +275,30 @@ include '../php/register.php';
               </div>
               </form>
         </div>
-          <hr>
-        <center><h2 style="font-weight:800;">Block Users</h2></center>
-          <hr>
-                <form>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    </div>
-                    <!-- <div class="form-group">
-                       <label for="exampleInputPassword1">Password</label>
-                       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div> -->
-                    <select class="form-select form-control" aria-label="Default select example">
-                        <option selected>Select User Type</option>
-                        <option value="1">Admin</option>
-                        <option value="2">Faculty</option>
-                        <option value="3">Student</option>
-                    </select>
-                   
-                
-                  </form>
-                  <button type="submit" class="btn btn-primary btn-block" style="">Block</button>
-      </div>
-    </div>
-      </div>
+       <center> <h4>Block User</h4></center>
+        <hr>
+        <form method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Enter email address to block user</label>
+    <input type="email" class="form-control" name="mailid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
 
+  <button type="submit" name="block" class="btn btn-primary">Block</button>
+</form>
+          
+      </div>
+      <center> <h4>Unblock User</h4></center>
+        <hr>
+        <form method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Enter email address to Unblock user</label>
+    <input type="email" class="form-control" name="mailid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+
+  <button type="submit" name="un block" class="btn btn-primary">Unblock</button>
+</form>
+          
+      </div>
       <!-- <div class="col-12 col-md-3 mb-3">
         <div class="card mb-3">
           <div class="card-body">

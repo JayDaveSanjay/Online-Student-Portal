@@ -194,7 +194,7 @@ include 'updatematerial.php';
       <th><?php echo $cnt; ?></th>
       <td><?php echo $row['subject'] ; ?></td>
       <td><a href="../material/<?php echo $row["file"] ?>"><i class="fa-solid fa-book"></i></a></td>
-      <td onclick="return confirm('Delete this User?');"><a href="updatematerial.php?id=<?php echo $row['id'];?>" style=""><i class="fa-solid fa-trash"></i></a></td>
+      <td onclick="return confirm('Delete this Material?');"><a href="updatematerial.php?id=<?php echo $row['id'];?>" style=""><i class="fa-solid fa-trash"></i></a></td>
 
     </tr>
   </tbody>

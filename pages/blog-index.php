@@ -48,7 +48,7 @@ include '../php/connection.php';
         //   while ($row = mysqli_fetch_assoc($result)) 
         //   {
           // define how many results you want per page
-$results_per_page = 1;
+$results_per_page = 2;
 
 // find out the number of results stored in database
 $sql='SELECT * FROM tbl_blog';

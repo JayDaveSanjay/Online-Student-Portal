@@ -78,6 +78,7 @@ if(isset($_POST['add']))
     $q="select * from users where email='$email'";
     $result=mysqli_query($conn,$q);
     $numrows=mysqli_num_rows($result); 
+    $status=0;
     if($numrows!=0)
     {
       $_SESSION['register']="email already in use";
@@ -85,7 +86,7 @@ if(isset($_POST['add']))
     }
     else
     {
-    $sql="insert into users(name,enno,email,contact,password,type) values('$name','$enno','$email','$contact','$pwd','$type')";
+    $sql="insert into users(name,enno,email,contact,password,type,status) values('$name','$enno','$email','$contact','$pwd','$type',$status)";
     $run=mysqli_query($conn,$sql);
     if ($run) {
         $_SESSION['register']="a new $type was inserted ";
@@ -124,7 +125,8 @@ if(isset($_POST['upload']))
           $item4=mysqli_real_escape_string($conn,$data[3]);
           $item5=mysqli_real_escape_string($conn,md5($data[4]));
           $item6=mysqli_real_escape_string($conn,$data[5]);
-            $sql="insert into users(name,enno,email,contact,password,type) values ('$item1','$item2','$item3','$item4','$item5','$item6')";
+          $status=0;
+            $sql="insert into users(name,enno,email,contact,password,type,status) values ('$item1','$item2','$item3','$item4','$item5','$item6',$status)";
              $run=mysqli_query($conn,$sql);
              if($run)
             {
@@ -145,6 +147,12 @@ if(isset($_POST['upload']))
       $_SESSION['csv']="Please choose a csv file";
       header('location:../pages/admin-dashboard-users.php');
     }
+  }
+  if(isset($_POST['block']))
+  {
+    $email=$_POST['mailid'];
+    $sql="update  users set status=1 where email='$email'";
+    $result=mysqli_query($conn,$sql);
   }
 function TEST($data)
 {

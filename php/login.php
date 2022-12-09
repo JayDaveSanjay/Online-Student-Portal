@@ -13,11 +13,19 @@ if(isset($_POST['signin']))
     $pass=md5($pass);
     $query = "SELECT * FROM users WHERE email = '$email' AND password = '$pass'";  
     $result = mysqli_query($conn, $query);  
+    $row=mysqli_fetch_assoc($result);
     $num=mysqli_num_rows($result);
     if($num!=0)  
     {  
+      if($row['status']==1)
+      {
+         echo '<script>alert("This user has been blocked for violationg terms and conditions of use!")</script>';
+      }
+      else
+      {
          $_SESSION['loginstatus'] =  "$email";  
          header("location:../index/index.php");  
+      }
     } 
     else
     {
